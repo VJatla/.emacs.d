@@ -1,3 +1,6 @@
+# Custom configuraition file
+auto-gen-custom.el
+
 # Compiled
 *.elc
 
