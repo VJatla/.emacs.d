@@ -2,4 +2,11 @@
 (setq custom-file "~/.emacs.d/auto-gen-custom.el")
 (load custom-file)
 
+;; Disable package.el in favor of straight.el
+(setq package-enable-at-startup nil)
+
+;; Installing required packages
+(org-babel-load-file "~/.emacs.d/install_packages.org")
+(org-babel-load-file "~/.emacs.d/markdown.org")
+
 

@@ -1,0 +1,8 @@
+#+Title: markdown mode
+#+Startup: indent
+* Use =markdown-mode= for =.md= files
+#+begin_src emacs-lisp
+(use-package markdown-mode
+  :mode ("README\\.md\\'" . gfm-mode)
+  :init (setq markdown-command "multimarkdown"))  
+#+end_src
