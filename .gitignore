@@ -20,3 +20,4 @@ straight/*
 # *.el files produced by compiling *.org files
 install_packages.el
 markdown.el
+agenda.el

@@ -7,6 +7,7 @@
 
 ;; Installing required packages
 (org-babel-load-file "~/.emacs.d/install_packages.org")
+(org-babel-load-file "~/.emacs.d/agenda.org")
 (org-babel-load-file "~/.emacs.d/markdown.org")
 
 

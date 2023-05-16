@@ -1,0 +1,6 @@
+* Agenda files
+#+begin_src emacs-lisp
+    (setq org-agenda-files
+	  (append (directory-files-recursively "~/Dropbox/org-tasks/" "\\.org$"))
+	  )
+#+end_src
