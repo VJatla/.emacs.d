@@ -39,32 +39,35 @@
 
 ** In modalka mode
 
-*** Navigating buffer
+*** Buffer navigation
 
 My goal is to map all the buffer navidations to the right hand (because I am
 right handed).
 
-| Key chord | Description                  | Change suggestions |
-|-----------+------------------------------+--------------------|
-| i         | up                           |                    |
-| k         | down                         |                    |
-| j         | left                         |                    |
-| l         | right                        |                    |
-|           |                              |                    |
-| u         | back by word                 |                    |
-| o         | forward by word              |                    |
-|           |                              |                    |
-| h         | begining of line             |                    |
-| ;         | end of line                  |                    |
-|           |                              |                    |
-| L         | forward by block (paragraph) |                    |
-| J         | back by blodk (paragraph)    |                    |
-|           |                              |                    |
-| I         | Beginning of buffer          |                    |
-| K         | End of buffer                |                    |
-|           |                              |                    |
-| n         | Go to a specific line nuber  |                    |
-|           |                              |                    |
+*Suggested chages:*
+- None 
+
+| Key chord | Description                  |
+|-----------+------------------------------|
+| i         | up                           |
+| k         | down                         |
+| j         | left                         |
+| l         | right                        |
+|           |                              |
+| u         | back by word                 |
+| o         | forward by word              |
+|           |                              |
+| h         | begining of line             |
+| ;         | end of line                  |
+|           |                              |
+| L         | forward by block (paragraph) |
+| J         | back by blodk (paragraph)    |
+|           |                              |
+| I         | Beginning of buffer          |
+| K         | End of buffer                |
+|           |                              |
+| n         | Go to a specific line nuber  |
+|           |                              |
 
 #+begin_src emacs-lisp
   (ryo-modal-keys
@@ -90,8 +93,31 @@ right handed).
 )
 #+end_src
 
+*** Buffer management
 
-*** Tools
+| Key chord | Description                                          |
+|-----------+------------------------------------------------------|
+| b s       | Saves the buffer                                     |
+| b S       | Saves all the unsaved buffers                        |
+| b k       | Kills the buffer                                     |
+| b j       | opens previous buffer                                |
+| b l       | opens next buffer, when jumping from previous buffer |
+|           |                                                      |
+
+#+begin_src emacs-lisp
+(ryo-modal-key
+ "b" '(
+	 ("s" save-buffer)
+	 ("k" kill-this-buffer)
+	 ("S" save-some-buffers)
+	 ("j" previous-buffer)
+	 ("l" next-buffer)
+
+
+	 )) 
+#+end_src
+
+*** Modal keybindings (SPC m)
 #+begin_src emacs-lisp
   (ryo-modal-key
    "SPC m" '(("t" treemacs)

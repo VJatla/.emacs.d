@@ -1,23 +1,8 @@
-# Custom configuraition file
-auto-gen-custom.el
+# Ignore everything
+*
 
-# Compiled
-*.elc
-
-# Packaging
-.cask
-
-# Backup files
-*~
-
-# Undo-tree save-files
-*.~undo-tree
-
-# Directories
-eln-cache/*
-straight/*
-
-# *.el files produced by compiling *.org files
-install_packages.el
-markdown.el
-agenda.el
+# Do not ignore the following files alone
+!.gitignore
+!README.md
+!init.el
+!*.org
