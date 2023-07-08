@@ -1,5 +1,4 @@
 #+Title: Installing packages
-#+Startup: indent
 * Installing =straight.el=
 #+begin_src emacs-lisp
   ;; Install straight.el
@@ -28,8 +27,44 @@
 	       (straight-use-package-by-default t))
 #+end_src
 
+* Looks
+** Dashboard
+#+begin_src emacs-lisp
+  (use-package dashboard)
+#+end_src
+
+* Project management related packages
+
+| Package name      | Function                                 |
+|-------------------+------------------------------------------|
+| Projectile        | Project management system                |
+| Treemacs          | Project sidebar                          |
+| counse-projectile | mini buffer tools for project management |
+| magit             | Git management software                  |
+
+#+begin_src emacs-lisp
+  (use-package projectile)
+  (use-package treemacs
+    :defer t)
+  (use-package counsel-projectile)
+  (use-package magit)
+#+end_src
+
+* Keybindings related packages
+
+| Package name | Function                                       |
+|--------------+------------------------------------------------|
+| Ryo          | Enables modal based editing                    |
+| which key    | Provides completion suggestions in minibuffer  |
+
+#+begin_src emacs-lisp
+  (use-package ryo-modal)
+  (use-package which-key)
+#+end_src
+
 * Markdown mode
 ** =markdown-mode=
 #+begin_src emacs-lisp
   (use-package markdown-mode)
 #+end_src
+

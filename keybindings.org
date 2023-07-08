@@ -1,0 +1,129 @@
+* Keybinding package configuration
+
+** Ryo modal
+
+#+begin_src emacs-lisp
+  (use-package ryo-modal
+  :commands ryo-modal-mode
+  )
+(push '((nil . "ryo:.*:") . (nil . "")) which-key-replacement-alist)
+(add-hook 'text-mode-hook 'ryo-modal-mode)
+(add-hook 'prog-mode-hook 'ryo-modal-mode)
+#+end_src
+
+** Which key
+
+#+begin_src emacs-lisp
+  (use-package which-key
+  :config
+  (which-key-mode))
+#+end_src
+
+
+* Ryo keybindings
+
+** Enter and exit ryo modes
+
+| Key chord | Mode        | Description                                |
+|-----------+-------------+--------------------------------------------|
+| C-e       | edit mode   | enables ryo mode (or) exits editing mode   |
+| e         | ryo  mode   | goes into edit mode                        |
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-e") 'ryo-modal-mode)
+  (ryo-modal-keys
+ ("e" ryo-modal-mode))
+#+end_src
+
+** In editing mode
+
+** In modalka mode
+
+*** Navigating buffer
+
+My goal is to map all the buffer navidations to the right hand (because I am
+right handed).
+
+| Key chord | Description                  | Change suggestions |
+|-----------+------------------------------+--------------------|
+| i         | up                           |                    |
+| k         | down                         |                    |
+| j         | left                         |                    |
+| l         | right                        |                    |
+|           |                              |                    |
+| u         | back by word                 |                    |
+| o         | forward by word              |                    |
+|           |                              |                    |
+| h         | begining of line             |                    |
+| ;         | end of line                  |                    |
+|           |                              |                    |
+| L         | forward by block (paragraph) |                    |
+| J         | back by blodk (paragraph)    |                    |
+|           |                              |                    |
+| I         | Beginning of buffer          |                    |
+| K         | End of buffer                |                    |
+|           |                              |                    |
+| n         | Go to a specific line nuber  |                    |
+|           |                              |                    |
+
+#+begin_src emacs-lisp
+  (ryo-modal-keys
+ ("i" previous-line)
+ ("k" next-line)
+ ("j" backward-char)
+ ("l" forward-char)
+ ("u" backward-word)
+ ("o" forward-word)
+
+ ("h" beginning-of-line)
+ (";" end-of-line)
+
+ ("L" forward-paragraph)
+ ("J" backward-paragraph)
+
+
+ ("I" beginning-of-buffer)
+ ("K" end-of-buffer)
+
+
+ ("n" goto-line)
+)
+#+end_src
+
+
+*** Tools
+#+begin_src emacs-lisp
+  (ryo-modal-key
+   "SPC m" '(("t" treemacs)
+	     ("g" magit-status)
+	     ("q" save-buffers-kill-terminal)
+	     ("|" display-fill-column-indicator-mode)
+	     ("a" org-agenda)))
+#+end_src
+
+* Package based keybindings
+** Treemacs
+
+#+begin_src emacs-lisp
+   (use-package treemacs
+   :bind(:map treemacs-mode-map
+		 ("w" . ace-window)
+		 ("i" . treemacs-previous-line)
+		 ("k" . treemacs-next-line)
+		 ("n" . treemacs-RET-action)))
+#+end_src
+
+** Dashboard
+
+#+begin_src emacs-lisp
+  (use-package dashboard
+  :bind(:map dashboard-mode-map
+	       ("M-j" . windmove-left)
+	       ("M-l" . windmove-right)
+	       ("A" . org-agenda)
+	       ("SPC m t" . treemacs)
+	       ("SPC m a" . org-agenda)
+	       ("w" . other-window)
+	       ("i" . dashboard-previous-line)
+	       ("k" . dashboard-next-line)))
+#+end_src

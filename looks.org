@@ -1,0 +1,18 @@
+* Dashboard
+#+begin_src emacs-lisp
+  (use-package dashboard
+   :ensure t
+   :config
+   (dashboard-setup-startup-hook)
+   (setq dashboard-set-heading-icons t)
+   (setq dashboard-set-file-icons t)
+   (setq dashboard-items '(
+			   (projects . 5)
+			   (recents  . 5)
+			   (bookmarks . 5)
+			   (registers . 5)))
+   (define-key dashboard-mode-map (kbd "w") 'other-window)
+   (setq dashboard-footer-messages '("कर्मण्येवाधिकारस्ते मा फलेषु कदाचन। मा कर्मफलहेतुर्भूर्मा ते सङ्गोऽस्त्वकर्मणि।।"))
+   )
+#+end_src
+
