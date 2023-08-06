@@ -10,6 +10,7 @@
 (org-babel-load-file "~/.emacs.d/looks.org")
 (org-babel-load-file "~/.emacs.d/agenda.org")
 (org-babel-load-file "~/.emacs.d/markdown.org")
+(org-babel-load-file "~/.emacs.d/denote.org")
 (org-babel-load-file "~/.emacs.d/keybindings.org")
 
 

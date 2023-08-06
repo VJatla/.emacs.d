@@ -1,7 +1,41 @@
+* Custom functions
+** Buffer editing and inserting characters
+#+begin_src emacs-lisp
+  (defun insert-4-space ()
+    (interactive)
+    (insert "    "))
+#+end_src
+** Search and replace
+#+begin_src emacs-lisp
+
+  ;; Replace word under cursor
+  (defun replace-cur-word (replace-str)
+    (interactive "sDo query-replace current word with: ")
+    (forward-word)
+    (let ((end (point)))
+      (backward-word)
+      (kill-ring-save (point) end)
+      (query-replace (current-kill 0) replace-str) ))
+
+  ;; query-replace current symbol
+  (defun replace-symbol (replace-str)
+    (interactive "sDo query-replace current word with: ")
+    (sp-forward-symbol)
+    (let ((end (point)))
+      (sp-backward-symbol)
+      (kill-ring-save (point) end)
+      (query-replace (current-kill 0) replace-str) ))
+
+  ;; Find markded region using swiper
+  (defun swiper-region ()
+    "Use current region if active for swiper search"
+    (interactive)
+    (if (use-region-p)
+        (swiper (format "%s" (buffer-substring (region-beginning) (region-end))))
+      (swiper)))
+#+end_src
 * Keybinding package configuration
-
 ** Ryo modal
-
 #+begin_src emacs-lisp
   (use-package ryo-modal
   :commands ryo-modal-mode
@@ -12,16 +46,12 @@
 #+end_src
 
 ** Which key
-
 #+begin_src emacs-lisp
   (use-package which-key
   :config
   (which-key-mode))
 #+end_src
-
-
 * Ryo keybindings
-
 ** Enter and exit ryo modes
 
 | Key chord | Mode        | Description                                |
@@ -35,10 +65,43 @@
  ("e" ryo-modal-mode))
 #+end_src
 
-** In editing mode
-
 ** In modalka mode
+*** Window switching
+#+begin_src emacs-lisp
+(ryo-modal-key
+ "w" '(("j" windmove-left)
+	 ("h" windmove-left)
+	 ("l" windmove-right)
+	 (";" windmove-right)
+	 ("i" windmove-up)
+	 ("k" windmove-down)
+	 ("d" delete-window)
 
+	 ("D" delete-other-windows)
+	 ("s v" split-window-vertically)
+	 ("s h" split-window-horizontally)
+	 ))
+#+end_src
+*** Copy / paste
+#+begin_src emacs-lisp
+(ryo-modal-keys
+ ("x" kill-region)
+ ("y" kill-ring-save))
+(ryo-modal-key "v" 'yank :then '(save-buffer) :name "paste-and-save")
+(ryo-modal-key "SPC y" 'beginning-of-line :then '(set-mark-command end-of-line kill-ring-save)  :name "copy-whole-line")
+#+end_src
+*** Buffer search and replace
+#+begin_src emacs-lisp
+(ryo-modal-keys
+ ("rr" query-replace)
+ ("rw" replace-cur-word)
+ ("rs" replace-symbol))
+(ryo-modal-keys
+ ("s" swiper-region)
+ ("@" highlight-symbol-at-point)
+ ("2" highlight-symbol-next)
+ ("*" swiper-isearch-thing-at-point))
+#+end_src
 *** Buffer navigation
 
 My goal is to map all the buffer navidations to the right hand (because I am
@@ -93,6 +156,56 @@ right handed).
 )
 #+end_src
 
+*** Buffer editing
+#+begin_src emacs-lisp
+(ryo-modal-keys
+ ("C" comment-or-uncomment-region)
+ ("8" undo)
+ ("4" insert-4-space)
+ ("," delete-backward-char)
+ ("a a" align-current))
+#+end_src
+*** Buffer selection
+
+| Keybindings | function                                            | region    |
+|-------------+-----------------------------------------------------+-----------|
+| m m         | set mark (used for mark-pop)                        | none      |
+| m p         | mark inside pairs                                   | brackets  |
+| m q         | mark inside quotes                                  | quotes    |
+| m L         | mark paragraph down                                 | paragh    |
+| m J         | mark paragraph up                                   | paragh    |
+| m k         | mark line below                                     | line      |
+| m i         | mark line above                                     | line      |
+| m j         | mark a character forward                            | character |
+| m l         | mark character backward                             | character |
+| m o         | mark word forward                                   | word      |
+| m u         | mark word back                                      | word      |
+| m s         | mark symbol (the meaning changes per mode)          | symbol    |
+| m M         | mark complete buffer                                | buffer    |
+| m K         | mark till end of buffer from current location       | buffer    |
+| m I         | mark till beginning of buffer form current location | buffer    |
+| m h         | mark till beginning of line                         | line      |
+| m ;         | mark till enc of line                               | line      |
+
+#+begin_src emacs-lisp
+(ryo-modal-key "m m" 'beginning-of-line :then '(set-mark-command end-of-line)  :name "mark-whole-line")
+(ryo-modal-key "m p" 'er/mark-inside-pairs  :name "mark-inside-pairs")
+(ryo-modal-key "m q" 'er/mark-inside-quotes  :name "mark-inside-quote")
+(ryo-modal-key "m L" 'set-mark-command :then '(forward-paragraph) :name "mark-paragraph")
+(ryo-modal-key "m J" 'set-mark-command :then '(backward-paragraph) :name "mark-paragraph")
+(ryo-modal-key "m M" 'beginning-of-buffer :then '(set-mark-command end-of-buffer) :name "mark-whole-buffer")
+(ryo-modal-key "m j" 'set-mark-command :then '(backward-char) :name "mark-char-backward")
+(ryo-modal-key "m k" 'set-mark-command :then '(next-line) :name "mark-char-backward")
+(ryo-modal-key "m i" 'set-mark-command :then '(previous-line) :name "mark-char-backward")
+(ryo-modal-key "m l" 'set-mark-command :then '(forward-char) :name "mark-char-forward")
+(ryo-modal-key "m o" 'set-mark-command :then '(forward-word) :name "mark-word")
+(ryo-modal-key "m u" 'set-mark-command :then '(backward-word) :name "mark-word-backward")
+(ryo-modal-key "m K" 'set-mark-command :then '(end-of-buffer) :name "mark-till-buffer-end")
+(ryo-modal-key "m I" 'set-mark-command :then '(beginning-of-buffer)  :name "mark-till-buffer-end")
+(ryo-modal-key "m h" 'set-mark-command :then '(beginning-of-line) :name "mark-line")
+(ryo-modal-key "m ;" 'set-mark-command :then '(end-of-line) :name "mark-line")
+(ryo-modal-key "m s" 'er/mark-symbol :name "mark-symbol")
+#+end_src
 *** Buffer management
 
 | Key chord | Description                                          |
