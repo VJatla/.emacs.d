@@ -1,0 +1,68 @@
+* Custom functions
+** Buffer editing and inserting characters
+#+begin_src emacs-lisp
+  (defun insert-4-space ()
+    (interactive)
+    (insert "    "))
+#+end_src
+** Search and replace
+#+begin_src emacs-lisp
+
+  ;; Replace word under cursor
+  (defun replace-cur-word (replace-str)
+    (interactive "sDo query-replace current word with: ")
+    (forward-word)
+    (let ((end (point)))
+      (backward-word)
+      (kill-ring-save (point) end)
+      (query-replace (current-kill 0) replace-str) ))
+
+  ;; query-replace current symbol
+  (defun replace-symbol (replace-str)
+    (interactive "sDo query-replace current word with: ")
+    (sp-forward-symbol)
+    (let ((end (point)))
+      (sp-backward-symbol)
+      (kill-ring-save (point) end)
+      (query-replace (current-kill 0) replace-str) ))
+
+  ;; Find markded region using swiper
+  (defun swiper-region ()
+    "Use current region if active for swiper search"
+    (interactive)
+    (if (use-region-p)
+        (swiper (format "%s" (buffer-substring (region-beginning) (region-end))))
+      (swiper)))
+#+end_src
+* Keybinding package configuration
+** Ryo modal
+#+begin_src emacs-lisp
+  (use-package ryo-modal
+  :commands ryo-modal-mode
+  )
+(push '((nil . "ryo:.*:") . (nil . "")) which-key-replacement-alist)
+(add-hook 'text-mode-hook 'ryo-modal-mode)
+(add-hook 'prog-mode-hook 'ryo-modal-mode)
+#+end_src
+
+** Which key
+#+begin_src emacs-lisp
+  (use-package which-key
+  :config
+  (which-key-mode))
+#+end_src
+* Ryo keybindings
+** Enter and exit ryo modes
+
+| Key chord | Mode        | Description                                |
+|-----------+-------------+--------------------------------------------|
+| C-e       | edit mode   | enables ryo mode (or) exits editing mode   |
+| e         | ryo  mode   | goes into edit mode                        |
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-e") 'ryo-modal-mode)
+  (ryo-modal-keys
+ ("e" ryo-modal-mode))
+#+end_src
+
+

@@ -152,7 +152,7 @@ right handed).
  ("K" end-of-buffer)
 
 
- ("n" goto-line)
+ ("#" goto-line)
 )
 #+end_src
 
@@ -228,9 +228,29 @@ right handed).
 
 
 	 )) 
+
+(ryo-modal-key
+ "b o" '(
+	   ("f" counsel-fzf)
+	   ("o" counsel-find-file)
+	   ("r" counsel-recentf)
+	   ("m" counsel-bookmark)
+	   ("p" counsel-projectile-find-file)
+	   ))
 #+end_src
 
-*** Modal keybindings (SPC m)
+*** Buffer deletion
+#+begin_src emacs-lisp
+(ryo-modal-key "d SPC l" 'kill-line :name "Delete till end")
+(ryo-modal-key "d d" 'kill-whole-line :name "Delete whole line")
+(ryo-modal-key "d o" 'set-mark-command :then '(forward-word kill-region) :name "delete word forward")
+(ryo-modal-key "d s" 'er/mark-symbol-with-prefix :then '(kill-region) :name "delete symbol")
+(ryo-modal-key "d u" 'set-mark-command :then '(backward-word kill-region) :name "delete word backward")
+(ryo-modal-key "d q" 'er/mark-inside-quotes :then '(kill-region) :name "delete in quotes")
+(ryo-modal-key "d (" 'er/mark-inside-pairs  :then '(kill-region) :name "change in parenthesis")
+#+end_src
+*** Major mode keybindings (SPC m)
+**** Accesing important major modes
 #+begin_src emacs-lisp
   (ryo-modal-key
    "SPC m" '(("t" treemacs)
@@ -239,10 +259,29 @@ right handed).
 	     ("|" display-fill-column-indicator-mode)
 	     ("a" org-agenda)))
 #+end_src
+**** Denote
+#+begin_src emacs-lisp
+(ryo-modal-key
+"SPC d" 
+'(
+("j" my-denote-journal)
+("n" denote)
+("i l" denote-insert-link)
+("k a" denote-keywords-add)
+("k r" denote-keywords-remove)))
+#+end_src
 
+**** LaTeX
+#+begin_src emacs-lisp
+(require 'tex)
+(ryo-modal-major-mode-keys
+ 'tex-mode
+ ("SPC SPC" TeX-command-run-all)
+ ("SPC r t" reftex-toc )
+ )
+#+end_src
 * Package based keybindings
 ** Treemacs
-
 #+begin_src emacs-lisp
    (use-package treemacs
    :bind(:map treemacs-mode-map
@@ -253,7 +292,6 @@ right handed).
 #+end_src
 
 ** Dashboard
-
 #+begin_src emacs-lisp
   (use-package dashboard
   :bind(:map dashboard-mode-map

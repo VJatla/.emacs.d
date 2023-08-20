@@ -7,7 +7,8 @@
  (setq denote-known-keywords '("emacs" "python"))
  (setq denote-infer-keywords t)
  (setq denote-sort-keywords t)
- (setq denote-file-type 'markdown-yaml) ; Org is the default, set others here
+ ;;(setq denote-file-type 'markdown-yaml) ; Org is the default, set others here
+ (setq denote-file-type 'org) ; Org is the default, set others here
  (setq denote-prompts '(title keywords))
  (setq denote-excluded-directories-regexp nil)
  (setq denote-excluded-keywords-regexp nil)
