@@ -15,15 +15,15 @@
 #+end_src
 * Evince
 #+begin_src emacs-lisp
-  (setq TeX-view-program-list '(("Evince" "evince --page-index=%(outpage) %o")))
-  (setq TeX-view-program-selection '((output-pdf "Evince")))
-  (add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode)
-  (setq TeX-source-correlate-start-server t)
+  ;; (setq TeX-view-program-list '(("Evince" "evince --page-index=%(outpage) %o")))
+  ;; (setq TeX-view-program-selection '((output-pdf "Evince")))
+  ;; (add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode)
+  ;; (setq TeX-source-correlate-start-server t)
 #+end_src
 * Okular (Commented)
 #+begin_src emacs-lisp
-  ;; (setq TeX-view-program-list '(("Okular" "okular --unique %o#src:%n%b")))
-  ;; (setq TeX-view-program-selection '((output-pdf "Okular")))
-  ;; (add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode)
-  ;; (setq TeX-source-correlate-start-server t)
+  (setq TeX-view-program-list '(("Okular" "okular --unique %o#src:%n%b")))
+  (setq TeX-view-program-selection '((output-pdf "Okular")))
+  (add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode)
+  (setq TeX-source-correlate-start-server t)
 #+end_src

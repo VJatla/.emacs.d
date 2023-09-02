@@ -53,16 +53,44 @@
 #+end_src
 * Ryo keybindings
 ** Enter and exit ryo modes
-
-| Key chord | Mode        | Description                                |
-|-----------+-------------+--------------------------------------------|
-| C-e       | edit mode   | enables ryo mode (or) exits editing mode   |
-| e         | ryo  mode   | goes into edit mode                        |
-
 #+begin_src emacs-lisp
   (global-set-key (kbd "C-e") 'ryo-modal-mode)
   (ryo-modal-keys
  ("e" ryo-modal-mode))
 #+end_src
 
+** Moving cursor around
+#+begin_src emacs-lisp
+  (ryo-modal-keys
+   ("e" previous-line)
+   ("d" next-line)
+   ("f" backward-char)
+   ("s" forward-char)
+   ("w" backward-word)
+   ("r" forward-word)
+
+   ("a" beginning-of-line)
+   ("f" end-of-line)
+
+   ("F" forward-paragraph)
+   ("S" backward-paragraph)
+
+
+   ("E" beginning-of-buffer)
+   ("D" end-of-buffer)
+
+
+   ("#" goto-line)
+   )
+#+end_src
+
+** Accessing important major modes
+
+#+begin_src emacs-lisp
+  (ryo-modal-key
+   "M" '(("t" treemacs)
+	 ("g" magit-status)
+	 ("|" display-fill-column-indicator-mode)))
+#+end_src
+* Major mode specific
 

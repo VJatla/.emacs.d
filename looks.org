@@ -1,7 +1,7 @@
 * Font
 #+begin_src emacs-lisp
   (add-to-list 'default-frame-alist
-	       '(font . "MonoLisa vj-10"))
+	       '(font . "MonoLisa vj-12"))
 #+end_src
 * Dashboard
 #+begin_src emacs-lisp
