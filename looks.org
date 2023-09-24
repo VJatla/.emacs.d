@@ -1,3 +1,23 @@
+* Changing default looks and functions
+** Inhabit GUI elements
+#+begin_src emacs-lisp
+  (setq inhibit-startup-screen t)
+  (tool-bar-mode -1)
+  (menu-bar-mode -1)
+  (scroll-bar-mode -1)
+#+end_src
+* Theme
+The theme changes depending on system. Comment accordingly.
+** Luna
+The theme here is white. I start with leuven theme and
+change the background to moon white, ~#eaf4fc~. I got the
+color hex codes from [[https://www.crispedge.com/color/eaf4fc/][Link]].
+#+begin_src emacs-lisp
+  (use-package leuven-theme)
+  (load-theme 'leuven t)
+#+end_src
+** Sol
+** Astro
 * Font
 #+begin_src emacs-lisp
   (add-to-list 'default-frame-alist

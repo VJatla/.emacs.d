@@ -88,9 +88,29 @@
 
 #+begin_src emacs-lisp
   (ryo-modal-key
-   "M" '(("t" treemacs)
-	 ("g" magit-status)
-	 ("|" display-fill-column-indicator-mode)))
+   "SPC SPC " '(("t" treemacs)
+		("g" magit-status)
+		("|" display-fill-column-indicator-mode)))
+  #+end_src
+* Inside major modes
+** Dashboard
+#+begin_src emacs-lisp
+  (use-package dashboard
+    :bind(:map dashboard-mode-map
+	       ("SPC SPC t" . treemacs)
+	       ("SPC SPC a" . org-agenda)
+	       ("e" . dashboard-previous-line)
+	       ("d" . dashboard-next-line)))
 #+end_src
-* Major mode specific
+** Treemacs
+#+begin_src emacs-lisp
+  (use-package treemacs
+  :bind(:map treemacs-mode-map
+             ("SPC SPC t" . treemacs)
+             ("SPC SPC a" . org-agenda)
+             ("e" . treemacs-previous-line)
+             ("E" . beginning-of-buffer)
+             ("d" . treemacs-next-line)
+             ("D" . end-of-buffer)))
+#+end_src
 

@@ -8,6 +8,7 @@
 ;; Installing required packages
 (org-babel-load-file "~/.emacs.d/install_packages.org")
 (org-babel-load-file "~/.emacs.d/looks.org")
+(org-babel-load-file "~/.emacs.d/function.org")
 (org-babel-load-file "~/.emacs.d/agenda.org")
 (org-babel-load-file "~/.emacs.d/org.org")
 (org-babel-load-file "~/.emacs.d/markdown.org")
