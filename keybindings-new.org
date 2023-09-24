@@ -54,9 +54,9 @@
 * Ryo keybindings
 ** Enter and exit ryo modes
 #+begin_src emacs-lisp
-  (global-set-key (kbd "C-e") 'ryo-modal-mode)
+  (global-set-key (kbd "C-i") 'ryo-modal-mode)
   (ryo-modal-keys
- ("e" ryo-modal-mode))
+ ("i" ryo-modal-mode))
 #+end_src
 
 ** Moving cursor around
@@ -64,13 +64,13 @@
   (ryo-modal-keys
    ("e" previous-line)
    ("d" next-line)
-   ("f" backward-char)
-   ("s" forward-char)
+   ("s" backward-char)
+   ("f" forward-char)
    ("w" backward-word)
    ("r" forward-word)
 
    ("a" beginning-of-line)
-   ("f" end-of-line)
+   ("g" end-of-line)
 
    ("F" forward-paragraph)
    ("S" backward-paragraph)
