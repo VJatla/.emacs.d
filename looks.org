@@ -9,9 +9,7 @@
 * Theme
 The theme changes depending on system. Comment accordingly.
 ** Luna
-The theme here is white. I start with leuven theme and
-change the background to moon white, ~#eaf4fc~. I got the
-color hex codes from [[https://www.crispedge.com/color/eaf4fc/][Link]].
+The theme here is white.
 #+begin_src emacs-lisp
   (use-package leuven-theme)
   (load-theme 'leuven t)
@@ -21,7 +19,7 @@ color hex codes from [[https://www.crispedge.com/color/eaf4fc/][Link]].
 * Font
 #+begin_src emacs-lisp
   (add-to-list 'default-frame-alist
-	       '(font . "MonoLisa vj-12"))
+	       '(font . "MonoLisa vj-11"))
 #+end_src
 * Dashboard
 #+begin_src emacs-lisp
@@ -40,4 +38,5 @@ color hex codes from [[https://www.crispedge.com/color/eaf4fc/][Link]].
    (setq dashboard-footer-messages '("कर्मण्येवाधिकारस्ते मा फलेषु कदाचन। मा कर्मफलहेतुर्भूर्मा ते सङ्गोऽस्त्वकर्मणि।।"))
    )
 #+end_src
+
 

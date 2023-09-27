@@ -94,6 +94,7 @@
 #+begin_src emacs-lisp
   (use-package markdown-mode)
   (use-package mmm-mode)
+  (use-package pandoc-mode)
 #+end_src
 * Note taking application, denote
 #+begin_src emacs-lisp

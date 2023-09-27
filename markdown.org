@@ -22,3 +22,7 @@ If SUBMODE is not provided, use `LANG-mode' by default."
       '("awk" "bibtex" "c" "cpp" "css" "html" "latex" "lisp" "makefile"
         "markdown" "python" "r" "ruby" "sql" "stata" "xml"))
 #+end_src
+* Pandoc mode
+#+begin_src emacs-lisp
+  (add-hook 'markdown-mode-hook 'pandoc-mode)
+#+end_src

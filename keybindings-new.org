@@ -54,9 +54,9 @@
 * Ryo keybindings
 ** Enter and exit ryo modes
 #+begin_src emacs-lisp
-  (global-set-key (kbd "C-i") 'ryo-modal-mode)
+  (global-set-key (kbd "C-8") 'ryo-modal-mode)
   (ryo-modal-keys
- ("i" ryo-modal-mode))
+ ("8" ryo-modal-mode))
 #+end_src
 
 ** Moving cursor around
@@ -84,8 +84,34 @@
    )
 #+end_src
 
+** Buffer selection
+#+begin_src emacs-lisp
+  (ryo-modal-key "m m" 'beginning-of-line :then '(set-mark-command end-of-line)  :name "mark-whole-line")
+  (ryo-modal-key "m (" 'er/mark-inside-pairs  :name "mark-inside-pairs")
+  (ryo-modal-key "m q" 'er/mark-inside-quotes  :name "mark-inside-quote")
+  (ryo-modal-key "m F" 'set-mark-command :then '(forward-paragraph) :name "mark-paragraph")
+  (ryo-modal-key "m S" 'set-mark-command :then '(backward-paragraph) :name "mark-paragraph")
+  (ryo-modal-key "m B" 'beginning-of-buffer :then '(set-mark-command end-of-buffer) :name "mark-whole-buffer")
+  (ryo-modal-key "m s" 'set-mark-command :then '(backward-char) :name "mark-char-backward")
+  (ryo-modal-key "m d" 'set-mark-command :then '(next-line) :name "mark-char-backward")
+  (ryo-modal-key "m e" 'set-mark-command :then '(previous-line) :name "mark-char-backward")
+  (ryo-modal-key "m f" 'set-mark-command :then '(forward-char) :name "mark-char-forward")
+  (ryo-modal-key "m r" 'set-mark-command :then '(forward-word) :name "mark-word")
+  (ryo-modal-key "m w" 'set-mark-command :then '(backward-word) :name "mark-word-backward")
+  (ryo-modal-key "m D" 'set-mark-command :then '(end-of-buffer) :name "mark-till-buffer-end")
+  (ryo-modal-key "m E" 'set-mark-command :then '(beginning-of-buffer)  :name "mark-till-buffer-end")
+  (ryo-modal-key "m a" 'set-mark-command :then '(beginning-of-line) :name "mark-line")
+  (ryo-modal-key "m g" 'set-mark-command :then '(end-of-line) :name "mark-line")
+  (ryo-modal-key "m s" 'er/mark-symbol :name "mark-symbol")
+  #+end_src
+** Copy / Paste
+#+begin_src emacs-lisp
+  (ryo-modal-keys
+   ("x" kill-region)
+   ("y" kill-ring-save))
+  (ryo-modal-key "v" 'yank :then '(save-buffer) :name "paste-and-save")
+#+end_src
 ** Accessing important major modes
-
 #+begin_src emacs-lisp
   (ryo-modal-key
    "SPC SPC " '(("t" treemacs)
@@ -113,4 +139,3 @@
              ("d" . treemacs-next-line)
              ("D" . end-of-buffer)))
 #+end_src
-
