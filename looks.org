@@ -11,8 +11,8 @@ The theme changes depending on system. Comment accordingly.
 ** Luna
 The theme here is white.
 #+begin_src emacs-lisp
-  (use-package leuven-theme)
-  (load-theme 'leuven t)
+  (use-package nord-theme)
+  (load-theme 'nord t)
 #+end_src
 ** Sol
 ** Astro
