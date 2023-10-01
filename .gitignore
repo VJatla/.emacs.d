@@ -4,5 +4,6 @@
 # Do not ignore the following files alone
 !.gitignore
 !README.md
+!README.org
 !init.el
 !*.org
