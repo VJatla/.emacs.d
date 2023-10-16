@@ -12,7 +12,7 @@ The theme changes depending on system. Comment accordingly.
 The theme here is white.
 #+begin_src emacs-lisp
   (use-package nord-theme)
-  (load-theme 'nord t)
+  (load-theme 'yantra t)
 #+end_src
 ** Sol
 ** Astro

@@ -7,3 +7,4 @@
 !README.org
 !init.el
 !*.org
+!*-theme.el
