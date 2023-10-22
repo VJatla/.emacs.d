@@ -16,4 +16,3 @@
 (org-babel-load-file "~/.emacs.d/latex.org")
 ;;(org-babel-load-file "~/.emacs.d/keybindings.org")
 
-

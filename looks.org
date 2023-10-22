@@ -8,18 +8,39 @@
 #+end_src
 * Theme
 The theme changes depending on system. Comment accordingly.
-** Yatra
-The theme here is white.
 #+begin_src emacs-lisp
-  (use-package leuven-theme)
-  (load-theme 'leuven t)
+  (cond
+
+   ((string-equal (system-name) "yatra")
+    (use-package leuven-theme)
+    (load-theme 'leuven t))
+
+   ((string-equal (system-name) "yantra")
+    (use-package zenburn-theme)
+    (load-theme 'zenburn t))
+
+   )
 #+end_src
-** Sol
-** Astro
 * Font
 #+begin_src emacs-lisp
-  (add-to-list 'default-frame-alist
-	       '(font . "Dank Mono-11"))
+  (cond
+
+   ((string-equal (system-name) "yatra")
+
+    (add-to-list 'default-frame-alist
+		 '(font . "Dank Mono-11"))
+    )
+
+   ((string-equal (system-name) "yantra")
+
+    (add-to-list 'default-frame-alist
+		 '(font . "MonoLisa vj-12"))
+
+    )
+
+   )
+
+
 #+end_src
 * Dashboard
 #+begin_src emacs-lisp
