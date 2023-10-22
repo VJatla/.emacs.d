@@ -8,18 +8,18 @@
 #+end_src
 * Theme
 The theme changes depending on system. Comment accordingly.
-** Luna
+** Yatra
 The theme here is white.
 #+begin_src emacs-lisp
-  (use-package nord-theme)
-  (load-theme 'yantra t)
+  (use-package leuven-theme)
+  (load-theme 'leuven t)
 #+end_src
 ** Sol
 ** Astro
 * Font
 #+begin_src emacs-lisp
   (add-to-list 'default-frame-alist
-	       '(font . "MonoLisa vj-11"))
+	       '(font . "Dank Mono-11"))
 #+end_src
 * Dashboard
 #+begin_src emacs-lisp
