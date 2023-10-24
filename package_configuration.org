@@ -2,3 +2,12 @@
 #+begin_src emacs-lisp
   (which-key-mode)
 #+end_src
+
+* Keybindings using C-c
+#+begin_src emacs-lisp
+  (let ((map global-map))
+
+    (define-key map (kbd "C-c SPC t") #'treemacs) ; our custom command
+    (define-key map (kbd "C-c SPC g") #'magit-status)
+    )
+#+end_src
