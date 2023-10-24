@@ -85,9 +85,9 @@
 |                       |                                               |
 
 #+begin_src emacs-lisp
-(use-package expand-region)
-  (use-package ryo-modal)
-  (use-package which-key)
+  (use-package expand-region)
+    (use-package ryo-modal)
+    (use-package which-key)
 #+end_src
 
 * Markdown mode
