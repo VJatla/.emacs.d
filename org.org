@@ -1,5 +1,5 @@
 * Org babel
 #+begin_src emacs-lisp
-(org-babel-do-load-languages
- 'org-babel-load-languages '((C . t)))
+  (org-babel-do-load-languages
+   'org-babel-load-languages '((C . t) (python .t)))
 #+end_src
