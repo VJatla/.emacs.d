@@ -100,9 +100,18 @@
 #+begin_src emacs-lisp
 (use-package denote)
 #+end_src
-* Org export
+* Org
+** Exporting packages
 #+begin_src emacs-lisp
-(use-package ox-gfm)
+  (use-package ox-gfm)
+#+end_src
+** Beautify packages
+#+begin_src emacs-lisp
+  (use-package org-beautify-theme)
+#+end_src
+** Bullets
+#+begin_src emacs-lisp
+  (use-package org-bullets)
 #+end_src
 * LaTeX
 #+begin_src emacs-lisp

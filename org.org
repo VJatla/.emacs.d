@@ -3,3 +3,7 @@
   (org-babel-do-load-languages
    'org-babel-load-languages '((C . t) (python .t)))
 #+end_src
+* Org bullets
+#+begin_src emacs-lisp
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+#+end_src
