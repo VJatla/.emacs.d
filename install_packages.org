@@ -118,3 +118,7 @@
 (use-package auctex
   :defer t)
 #+end_src
+* HTML
+#+begin_src emacs-lisp
+  (use-package htmlize)
+#+end_src
