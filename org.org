@@ -3,6 +3,25 @@
   (org-babel-do-load-languages
    'org-babel-load-languages '((C . t) (python .t)))
 #+end_src
+* Make ~org~ pretty
+#+begin_src emacs-lisp
+  (cond
+
+
+   ((string-equal (system-name) "yatra")
+
+    ;; Due to leuven-theme org is already pretty!
+    ;;(load-theme 'org-beautify t)
+    )
+
+   ((string-equal (system-name) "yantra")
+
+    ;; The Zenburn theme needs this
+    (load-theme 'org-beautify t)
+
+    )
+   )
+#+end_src
 * Org states
 ** States
 #+begin_src emacs-lisp
@@ -19,6 +38,7 @@
     (setq org-todo-keywords
 	  '((sequence "TODO(t)" "DOING(o)" "PAUSE(p)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
     )
+   )
 
 #+end_src
 ** Faces
@@ -28,31 +48,33 @@
 
    ((string-equal (system-name) "yatra")
     (setq org-todo-keyword-faces
-	  '(("DOING" . (:foreground "DarkOliveGreen4" :background "honeydew"))
-	    ("PAUSE" . (:foreground "chocolate" :background "honeydew"))
-	    ("WAITING" . (:foreground "chocolate" :background "honeydew")))
-	  )
+	  '(("DOING" . (:foreground "DarkOliveGreen4" :background "honeydew" :box t))
+	    ("PAUSE" . (:foreground "chocolate" :background "honeydew" :box t))
+	    ("WAITING" . (:foreground "chocolate" :background "honeydew": box t))))
 
-    (custom-set-faces
-     '(org-done ((t (:weight bold :strike-through t))))
-     '(org-headline-done ((t (:weight normal :strike-through t)))))
+   (custom-set-faces
+    '(org-done ((t (:weight bold :strike-through t))))
+    '(org-headline-done ((t (:weight normal :strike-through t)))))
 
-    );; End of yatra settings
+   );; End of yatra settings
 
-   ((string-equal (system-name) "yantra")
+  ((string-equal (system-name) "yantra")
 
-    (setq org-todo-keyword-faces
-	  '(("DOING" . (:foreground "DarkOliveGreen4" :background "honeydew"))
-	    ("PAUSE" . (:foreground "chocolate" :background "honeydew"))
-	    ("WAITING" . (:foreground "chocolate" :background "honeydew")))
-	  )
+   (setq org-todo-keyword-faces
+	 '(("DOING" . (:foreground "DarkOliveGreen4" :background "honeydew"))
+	   ("PAUSE" . (:foreground "chocolate" :background "honeydew"))
+	   ("WAITING" . (:foreground "chocolate" :background "honeydew")))
+	 )
 
-    (custom-set-faces
-     '(org-done ((t (:weight bold :strike-through t))))
-     '(org-headline-done ((t (:weight normal :strike-through t)))))
-    );; End of yantra settings
+   (custom-set-faces
+    '(org-done ((t (:weight bold :strike-through t))))
+    '(org-headline-done ((t (:weight normal :strike-through t)))))
+   );; End of yantra settings
+  )
 
 
 
 
 #+end_src
+
+#+RESULTS:
