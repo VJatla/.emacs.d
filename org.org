@@ -3,12 +3,56 @@
   (org-babel-do-load-languages
    'org-babel-load-languages '((C . t) (python .t)))
 #+end_src
-* Org bullets
+* Org states
+** States
 #+begin_src emacs-lisp
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+  (cond
+
+   ((string-equal (system-name) "yatra")
+    (setq org-todo-keywords
+	  '((sequence "TODO(t)" "DOING(o)" "PAUSE(p)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
+
+    )
+
+   ((string-equal (system-name) "yantra")
+
+    (setq org-todo-keywords
+	  '((sequence "TODO(t)" "DOING(o)" "PAUSE(p)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
+    )
+
 #+end_src
-* Github flavored markdown export
+** Faces
 #+begin_src emacs-lisp
-  (eval-after-load "org"
-  '(require 'ox-gfm nil t))
+
+  (cond
+
+   ((string-equal (system-name) "yatra")
+    (setq org-todo-keyword-faces
+	  '(("DOING" . (:foreground "DarkOliveGreen4" :background "honeydew"))
+	    ("PAUSE" . (:foreground "chocolate" :background "honeydew"))
+	    ("WAITING" . (:foreground "chocolate" :background "honeydew")))
+	  )
+
+    (custom-set-faces
+     '(org-done ((t (:weight bold :strike-through t))))
+     '(org-headline-done ((t (:weight normal :strike-through t)))))
+
+    );; End of yatra settings
+
+   ((string-equal (system-name) "yantra")
+
+    (setq org-todo-keyword-faces
+	  '(("DOING" . (:foreground "DarkOliveGreen4" :background "honeydew"))
+	    ("PAUSE" . (:foreground "chocolate" :background "honeydew"))
+	    ("WAITING" . (:foreground "chocolate" :background "honeydew")))
+	  )
+
+    (custom-set-faces
+     '(org-done ((t (:weight bold :strike-through t))))
+     '(org-headline-done ((t (:weight normal :strike-through t)))))
+    );; End of yantra settings
+
+
+
+
 #+end_src

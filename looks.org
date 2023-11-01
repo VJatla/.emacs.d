@@ -30,7 +30,7 @@ The theme changes depending on system. Comment accordingly.
    ((string-equal (system-name) "yatra")
 
     (add-to-list 'default-frame-alist
-		 '(font . "Dank Mono-11"))
+		 '(font . "Dank Mono-13"))
     )
 
    ((string-equal (system-name) "yantra")

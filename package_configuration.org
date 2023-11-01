@@ -7,7 +7,11 @@
 #+begin_src emacs-lisp
   (let ((map global-map))
 
-    (define-key map (kbd "C-c SPC t") #'treemacs) ; our custom command
+    (define-key map (kbd "C-c SPC t") #'treemacs)
     (define-key map (kbd "C-c SPC g") #'magit-status)
+    (define-key map (kbd "C-c SPC a") #'org-agenda)
     )
 #+end_src
+
+#+RESULTS:
+: org-agenda
