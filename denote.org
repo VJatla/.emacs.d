@@ -3,7 +3,7 @@
       (require 'denote)
 
       ;; Remember to check the doc strings of those variables.
-      (setq denote-directory (expand-file-name "~/Dropbox/org-notes/"))
+      (setq denote-directory (expand-file-name "~/Dropbox/notes/"))
       (setq denote-known-keywords
 	    '("elisp" "python" "cpp"
 	      "machine-learning" "meta-learning"))
