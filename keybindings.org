@@ -1,31 +1,115 @@
 #+Title: Modal / Custom keybindings
 
-* Design principle
+* Custom functions
 
-- My idea is to design mnemonic keybindings using ~Ryo~ package.
-- In modal mode, *<characters>* are used for *frequent* tasks
-  like, (1) jumping around buffer, (2) selecting buffer and (3)
-  changind buffer.
-- *<space> <character>* will be reserved for *typical* tasks.
-- *<space> <space> <character>* will be for *rare* tasks.
+** Buffer editing and inserting characters
 
-* Moving around buffer
-
-| Function           | Shortcut | Comments |
-|--------------------+----------+----------|
-| Forward character  | f        |          |
-| Backward character | b        |          |
-| Next line          | n        |          |
-| Previous line      | p        |          |
-| Start of line      | s        |          |
-| End of line        | e        |          |
-| Go to beginning    | g-b      |          |
-| Go to end          | g-e      |          |
-| Go to line number  | g-n      |          |
-|                    |          |          |
-
-* Load shortcuts
 #+begin_src emacs-lisp
-  (org-babel-load-file "~/.emacs.d/load-keybindings.org")
+  (defun insert-4-space ()
+    (interactive)
+    (insert "    "))
 #+end_src
+
+** Search and replace
+
+#+begin_src emacs-lisp
+
+  ;; Replace word under cursor
+  (defun replace-cur-word (replace-str)
+    (interactive "sDo query-replace current word with: ")
+    (forward-word)
+    (let ((end (point)))
+      (backward-word)
+      (kill-ring-save (point) end)
+      (query-replace (current-kill 0) replace-str) ))
+
+  ;; query-replace current symbol
+  (defun replace-symbol (replace-str)
+    (interactive "sDo query-replace current word with: ")
+    (sp-forward-symbol)
+    (let ((end (point)))
+      (sp-backward-symbol)
+      (kill-ring-save (point) end)
+      (query-replace (current-kill 0) replace-str) ))
+
+  ;; Find markded region using swiper
+  (defun swiper-region ()
+    "Use current region if active for swiper search"
+    (interactive)
+    (if (use-region-p)
+        (swiper (format "%s" (buffer-substring (region-beginning) (region-end))))
+      (swiper)))
+#+end_src
+
+* Packages
+
+** Ryo modal
+
+#+begin_src emacs-lisp
+  (use-package ryo-modal
+  :commands ryo-modal-mode
+  )
+(push '((nil . "ryo:.*:") . (nil . "")) which-key-replacement-alist)
+(add-hook 'text-mode-hook 'ryo-modal-mode)
+(add-hook 'prog-mode-hook 'ryo-modal-mode)
+#+end_src
+
+** Which key
+
+#+begin_src emacs-lisp
+  (use-package which-key
+  :config
+  (which-key-mode))
+#+end_src
+
+* Entering / Exiting Ryo modal keys
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-3") 'ryo-modal-mode)
+  (ryo-modal-keys
+   ("3" ryo-modal-mode))
+#+end_src
+
+* Repeat: using <spc>
+
+#+begin_src emacs-lisp
+  (ryo-modal-keys
+
+   ("SPC" repeat)
+   )
+#+end_src
+
+* Moving around
+
+** In buffer
+
+#+begin_src emacs-lisp
+
+  (ryo-modal-keys
+
+   ("b" backward-char)  
+   ("f" forward-char)  
+   ("p" previous-line)  
+   ("n" next-line)  
+   ("a" beginning-of-line)  
+   ("e" end-of-line) 
+   ("<" beginning-of-buffer) 
+   (">" end-of-buffer)
+   ("F" forward-paragraph)
+   ("B" backward-paragraph)
+
+   )
+
+  #+end_src
+
+* Editing
+
+** In buffer
+
+#+begin_src emacs-lisp
+  (ryo-modal-keys
+   ("k" "C-k")
+   )
+#+end_src
+
 

@@ -15,5 +15,5 @@
 (org-babel-load-file "~/.emacs.d/denote.org")
 (org-babel-load-file "~/.emacs.d/latex.org")
 (org-babel-load-file "~/.emacs.d/package_configuration.org")
-;;(org-babel-load-file "~/.emacs.d/keybindings.org")
+(org-babel-load-file "~/.emacs.d/keybindings.org")
 
