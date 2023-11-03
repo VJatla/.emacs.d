@@ -87,6 +87,7 @@
 
   (ryo-modal-keys
 
+   ;; Single keystroke movement
    ("b" backward-char)  
    ("f" forward-char)  
    ("p" previous-line)  
@@ -95,9 +96,13 @@
    ("e" end-of-line) 
    ("<" beginning-of-buffer) 
    (">" end-of-buffer)
-   ("F" forward-paragraph)
-   ("B" backward-paragraph)
+   ("F" forward-word)
+   ("B" backward-word)
 
+   ;; Double keystroke movement
+   ("m f" forward-paragraph)
+   ("m b" backward-paragraph)
+   
    )
 
   #+end_src
@@ -109,7 +114,18 @@
 #+begin_src emacs-lisp
   (ryo-modal-keys
    ("k" "C-k")
+   ("8" undo)
    )
 #+end_src
 
+* Major mode bindings
+
+** Accesing other major modes
+
+#+begin_src emacs-lisp
+  (ryo-modal-keys
+	     ("m m g" magit-status)
+	     ("m m t" treemacs)
+	     )
+#+end_src
 
