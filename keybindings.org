@@ -1,5 +1,11 @@
 #+Title: Modal / Custom keybindings
+* Guiding principles
 
+- The keystrokes should **avoid using modifier keys** as much as possible.
+- The keystrokes should be **mnemonics** in nature.
+- No need to follow Vim / Emacs way of remembering things. Follow what
+  is easy for you to remember.
+  
 * Custom functions
 
 ** Buffer editing and inserting characters
@@ -37,7 +43,7 @@
     "Use current region if active for swiper search"
     (interactive)
     (if (use-region-p)
-        (swiper (format "%s" (buffer-substring (region-beginning) (region-end))))
+	(swiper (format "%s" (buffer-substring (region-beginning) (region-end))))
       (swiper)))
 #+end_src
 
@@ -47,36 +53,32 @@
 
 #+begin_src emacs-lisp
   (use-package ryo-modal
-  :commands ryo-modal-mode
-  )
-(push '((nil . "ryo:.*:") . (nil . "")) which-key-replacement-alist)
-(add-hook 'text-mode-hook 'ryo-modal-mode)
-(add-hook 'prog-mode-hook 'ryo-modal-mode)
+    :commands ryo-modal-mode
+    )
+  (push '((nil . "ryo:.*:") . (nil . "")) which-key-replacement-alist)
+  (add-hook 'text-mode-hook 'ryo-modal-mode)
+  (add-hook 'prog-mode-hook 'ryo-modal-mode)
 #+end_src
 
 ** Which key
 
 #+begin_src emacs-lisp
   (use-package which-key
-  :config
-  (which-key-mode))
+    :config
+    (which-key-mode))
 #+end_src
 
 * Entering / Exiting Ryo modal keys
 
 #+begin_src emacs-lisp
-  (global-set-key (kbd "C-3") 'ryo-modal-mode)
-  (ryo-modal-keys
-   ("3" ryo-modal-mode))
+  (global-set-key (kbd "C-r") 'ryo-modal-mode)
+  (ryo-modal-keys ("SPC r" ryo-modal-mode))
 #+end_src
 
-* Repeat: using <spc>
+* Repeat
 
 #+begin_src emacs-lisp
-  (ryo-modal-keys
-
-   ("SPC" repeat)
-   )
+  (ryo-modal-keys("8" repeat))
 #+end_src
 
 * Moving around
@@ -87,36 +89,38 @@
 
   (ryo-modal-keys
 
-   ;; Single keystroke movement
-   ("b" backward-char)  
-   ("f" forward-char)  
-   ("p" previous-line)  
-   ("n" next-line)  
-   ("a" beginning-of-line)  
-   ("e" end-of-line) 
-   ("<" beginning-of-buffer) 
-   (">" end-of-buffer)
-   ("F" forward-word)
-   ("B" backward-word)
+   ;; Character related movements
+   ("f" forward-char)                        
+   ("b" backward-char)                       
+   ("u" previous-line)                       
+   ("d" next-line)                           
 
-   ;; Double keystroke movement
-   ("m f" forward-paragraph)
-   ("m b" backward-paragraph)
-   
+   ;; Line / Paragraph related movements
+   ("SPC b" beginning-of-line)
+   ("SPC f" end-of-line)
+   ("F" forward-paragraph)
+   ("B" backward-paragraph)
+
+   ;; Paragraph related movements
+   ("U" beginning-of-buffer)          
+   ("D" end-of-buffer)
+
+   ;; Word movements
+   ("w" forward-word)
+   ("r" backward-word)
    )
 
-  #+end_src
-
+#+end_src
 * Editing
 
 ** In buffer
 
 #+begin_src emacs-lisp
   (ryo-modal-keys
-   ("k" "C-k")
-   ("8" undo)
+   ("x" kill-line)
+   ("p" yank)
    )
-#+end_src
+    #+end_src
 
 * Major mode bindings
 
@@ -124,8 +128,8 @@
 
 #+begin_src emacs-lisp
   (ryo-modal-keys
-	     ("m m g" magit-status)
-	     ("m m t" treemacs)
+	     ("SPC m g" magit-status)
+	     ("SPC m t" treemacs)
 	     )
 #+end_src
 
