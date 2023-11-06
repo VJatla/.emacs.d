@@ -80,7 +80,7 @@
   (ryo-modal-keys ("e" ryo-modal-mode))
   (global-set-key (kbd "C-e") 'ryo-modal-mode)
   (global-set-key (kbd "M-e") 'ryo-modal-mode)
-  (key-chord-define-global "ee" 'ryo-modal-mode)
+  ;;(key-chord-define-global "ee" 'ryo-modal-mode)
 
 #+end_src
 
