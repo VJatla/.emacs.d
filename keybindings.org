@@ -1,4 +1,4 @@
-#+Title: Modal / Custom keybindings  
+#+Title: Modal / Custom keybindings
 * Guiding principles of this document
 
 - The keystrokes should **avoid using modifier keys** as much as possible.
@@ -77,9 +77,8 @@
 * Entering / Exiting Ryo modal keys
 
 #+begin_src emacs-lisp
-  (ryo-modal-keys ("e" ryo-modal-mode))
-  (global-set-key (kbd "C-e") 'ryo-modal-mode)
-  (global-set-key (kbd "M-e") 'ryo-modal-mode)
+  (ryo-modal-keys ("i" ryo-modal-mode))
+  (global-set-key (kbd "M-i") 'ryo-modal-mode)
   ;;(key-chord-define-global "ee" 'ryo-modal-mode)
 
 #+end_src
@@ -100,20 +99,20 @@
    ;; Character related movements
    ("f" forward-char)
    ("b" backward-char)
-   ("u" previous-line)
-   ("d" next-line)
+   ("p" previous-line)
+   ("n" next-line)
 
    ;; Line / Paragraph related movements
    ("F" forward-paragraph)
    ("B" backward-paragraph)
-   ("U" scroll-down-command)
-   ("D" scroll-up-command)
+   ("P" scroll-down-command)
+   ("N" scroll-up-command)
 
    ;; Beginning / ending of buffer and lines
-   ("SPC u" beginning-of-buffer)
-   ("SPC d" end-of-buffer)
-   ("SPC b" beginning-of-line)
-   ("SPC f" end-of-line)
+   ("g b" beginning-of-buffer)
+   ("g e" end-of-buffer)
+   ("s" beginning-of-line)
+   ("e" end-of-line)
 
    ;; Word movements
    ("w" forward-word)
@@ -167,7 +166,7 @@
   (ryo-modal-key
    "m" '(
 	 ("m" set-mark-command :name "set-mark")
-	 ("u" keyboard-quit :name "unselect")
+	 ("c" keyboard-quit :name "mark clear")
 	 ("w" er/mark-word :name "mark word")
 	 ("s" er/mark-symbol :name "mark symbol")
 	 ))
@@ -184,8 +183,8 @@
 
   ;; Saving
   (ryo-modal-keys
-   ("s s" save-buffer)
-   ("s S" save-some-buffers)
+   ("SPC s " save-buffer)
+   ("SPC S" save-some-buffers)
    )
 #+end_src
 
@@ -203,5 +202,6 @@
 ** Accessing M-x
 
 #+begin_src emacs-lisp
-  (ryo-modal-keys ("x x" "M-x"))
+  (ryo-modal-keys ("SPC x" "M-x"))
 #+end_src
+

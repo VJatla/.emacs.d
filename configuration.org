@@ -12,6 +12,3 @@
     (define-key map (kbd "C-c SPC a") #'org-agenda)
     )
 #+end_src
-
-#+RESULTS:
-: org-agenda
