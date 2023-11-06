@@ -1,5 +1,5 @@
-#+Title: Modal / Custom keybindings
-* Guiding principles
+#+Title: Modal / Custom keybindings  
+* Guiding principles of this document
 
 - The keystrokes should **avoid using modifier keys** as much as possible.
 - The keystrokes should be **mnemonics** in nature.
@@ -45,7 +45,7 @@
     (if (use-region-p)
 	(swiper (format "%s" (buffer-substring (region-beginning) (region-end))))
       (swiper)))
-#+end_src
+    #+end_src
 
 * Packages
 
@@ -68,11 +68,20 @@
     (which-key-mode))
 #+end_src
 
+** Key chord
+
+#+begin_src emacs-lisp
+  (use-package key-chord)
+  (key-chord-mode 1)
+#+end_src
 * Entering / Exiting Ryo modal keys
 
 #+begin_src emacs-lisp
-  (global-set-key (kbd "C-r") 'ryo-modal-mode)
-  (ryo-modal-keys ("SPC r" ryo-modal-mode))
+  (ryo-modal-keys ("e" ryo-modal-mode))
+  (global-set-key (kbd "C-e") 'ryo-modal-mode)
+  (global-set-key (kbd "M-e") 'ryo-modal-mode)
+  (key-chord-define-global "ee" 'ryo-modal-mode)
+
 #+end_src
 
 * Repeat
@@ -82,7 +91,6 @@
 #+end_src
 
 * Moving around
-
 ** In buffer
 
 #+begin_src emacs-lisp
@@ -90,24 +98,26 @@
   (ryo-modal-keys
 
    ;; Character related movements
-   ("f" forward-char)                        
-   ("b" backward-char)                       
-   ("u" previous-line)                       
-   ("d" next-line)                           
+   ("f" forward-char)
+   ("b" backward-char)
+   ("u" previous-line)
+   ("d" next-line)
 
    ;; Line / Paragraph related movements
-   ("SPC b" beginning-of-line)
-   ("SPC f" end-of-line)
    ("F" forward-paragraph)
    ("B" backward-paragraph)
+   ("U" scroll-down-command)
+   ("D" scroll-up-command)
 
-   ;; Paragraph related movements
-   ("U" beginning-of-buffer)          
-   ("D" end-of-buffer)
+   ;; Beginning / ending of buffer and lines
+   ("SPC u" beginning-of-buffer)
+   ("SPC d" end-of-buffer)
+   ("SPC b" beginning-of-line)
+   ("SPC f" end-of-line)
 
    ;; Word movements
    ("w" forward-word)
-   ("r" backward-word)
+   ("W" backward-word)
    )
 
 #+end_src
@@ -115,12 +125,69 @@
 
 ** In buffer
 
+*** Kill
+
 #+begin_src emacs-lisp
   (ryo-modal-keys
-   ("x" kill-line)
-   ("p" yank)
+   ("k k" kill-line :name "default")
    )
-    #+end_src
+  (let ((text-objects
+	 '(
+	   ("w" er/mark-word :name "Kill word")
+	   ("d" er/mark-defun :name "Kill Defun")
+	   ("s" er/mark-symbol :name "kill symbol")
+	   )))
+    (eval `(ryo-modal-keys
+	    ("k" ,text-objects :then '(kill-region)))))
+#+end_src
+
+*** Copy
+
+#+begin_src emacs-lisp
+  (ryo-modal-keys ("c c" kill-ring-save))
+#+end_src
+
+*** Paste
+
+#+begin_src emacs-lisp
+  (ryo-modal-keys ("y" yank))
+#+end_src
+
+*** Undo
+#+begin_src emacs-lisp
+  (ryo-modal-keys
+   ("u" undo)
+   ("U" undo-redo)
+   )
+#+end_src
+* Marking
+
+#+begin_src emacs-lisp
+  ;; Start mark
+  (ryo-modal-key
+   "m" '(
+	 ("m" set-mark-command :name "set-mark")
+	 ("u" keyboard-quit :name "unselect")
+	 ("w" er/mark-word :name "mark word")
+	 ("s" er/mark-symbol :name "mark symbol")
+	 ))
+
+#+end_src
+
+* File operations
+
+- Opening
+- Saving
+- Searching
+
+#+begin_src emacs-lisp
+
+  ;; Saving
+  (ryo-modal-keys
+   ("s s" save-buffer)
+   ("s S" save-some-buffers)
+   )
+#+end_src
 
 * Major mode bindings
 
@@ -133,3 +200,8 @@
 	     )
 #+end_src
 
+** Accessing M-x
+
+#+begin_src emacs-lisp
+  (ryo-modal-keys ("x x" "M-x"))
+#+end_src
