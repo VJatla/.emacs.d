@@ -205,3 +205,9 @@
   (ryo-modal-keys ("SPC x" "M-x"))
 #+end_src
 
+** Markdown mode specific bindings
+#+begin_src emacs-lisp
+  (ryo-modal-major-mode-keys
+ 'markdown-mode
+ ("SPC SPC t" toggle-truncate-lines))
+#+end_src

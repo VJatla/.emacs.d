@@ -12,6 +12,9 @@
 
     ;; Due to leuven-theme org is already pretty!
     ;;(load-theme 'org-beautify t)
+
+    ;; The modus theme might also need this
+    (load-theme 'org-beautify t)
     )
 
    ((string-equal (system-name) "yantra")

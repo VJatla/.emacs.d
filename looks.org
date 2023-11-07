@@ -17,7 +17,8 @@ The theme changes depending on system. Comment accordingly.
 
    ((string-equal (system-name) "yatra")
     (use-package leuven-theme)
-    (load-theme 'leuven t))
+    (use-package solarized-theme)
+    (load-theme 'solarized-light t))
 
    ((string-equal (system-name) "yantra")
     (use-package zenburn-theme)
