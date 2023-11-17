@@ -35,9 +35,9 @@
 
 * Search, replace and highlight
 #+begin_src emacs-lisp
-(use-package swiper)
-(use-package counsel)
-(use-package highlight-symbol)
+  (use-package swiper)
+  (use-package counsel)
+  (use-package highlight-symbol)
 #+end_src
 * Minibuffer
 #+begin_src emacs-lisp
@@ -95,6 +95,7 @@
   (use-package markdown-mode)
   (use-package mmm-mode)
   (use-package pandoc-mode)
+  (use-package markdown-toc)
 #+end_src
 * Note taking application, denote
 #+begin_src emacs-lisp

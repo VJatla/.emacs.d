@@ -67,7 +67,9 @@ The theme changes depending on system. Comment accordingly.
 			   (registers . 5)))
    (define-key dashboard-mode-map (kbd "w") 'other-window)
    (setq dashboard-footer-messages '("कर्मण्येवाधिकारस्ते मा फलेषु कदाचन। मा कर्मफलहेतुर्भूर्मा ते सङ्गोऽस्त्वकर्मणि।।"))
+   (setq dashboard-startup-banner "~/.emacs.d/FBRI_logo_800x600.png")
    )
+
 #+end_src
 
 

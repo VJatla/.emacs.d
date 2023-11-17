@@ -65,6 +65,7 @@
 #+begin_src emacs-lisp
   (use-package which-key
     :config
+    (push '((nil . "ryo:.*:") . (nil . "")) which-key-replacement-alist)
     (which-key-mode))
 #+end_src
 
@@ -128,7 +129,7 @@
 
 #+begin_src emacs-lisp
   (ryo-modal-keys
-   ("k k" kill-line :name "default")
+   ("k k" kill-region :name "Kill region")
    )
   (let ((text-objects
 	 '(
@@ -186,9 +187,18 @@
    ("SPC s " save-buffer)
    ("SPC S" save-some-buffers)
    )
+
+  ;; Opening files
+  (ryo-modal-keys
+   ("SPC f"
+    (("d" counsel-find-file :name "in (d)irectory")
+     ("p" counsel-projectile-find-file :name "in (p)roject")
+     ("r" counsel-recentf :name "(r)ecently opened"))
+    :name "find file"))
+
 #+end_src
 
-* Major mode bindings
+* Modes bindings
 
 ** Accesing other major modes
 
@@ -199,15 +209,50 @@
 	     )
 #+end_src
 
+** Toggle things
+
+#+begin_src emacs-lisp
+  (ryo-modal-key
+   "SPC t" '(
+	 ("T" toggle-truncate-lines :name "toggle truncate lines")
+	 ("t" treemacs :name "open treemacs")
+	 ("l" hl-line-mode :name "highlight line")
+	 ))
+#+end_src
+
 ** Accessing M-x
 
 #+begin_src emacs-lisp
   (ryo-modal-keys ("SPC x" "M-x"))
 #+end_src
 
-** Markdown mode specific bindings
+** Denote keybindings
+
 #+begin_src emacs-lisp
-  (ryo-modal-major-mode-keys
- 'markdown-mode
- ("SPC SPC t" toggle-truncate-lines))
+  (ryo-modal-key
+   "SPC n" '(
+	     ("n" denote :name "denote")
+	     ("r" denote-rename-file :name "denote rename file")
+	     ("k a" denote-keywords-add :name "denote keyword add")
+	     ))
+#+end_src
+
+* Testing keybindings
+#+begin_src emacs-lisp
+  (ryo-modal-keys
+ ("SPC SPC"
+  (("w" er/mark-word :name "Mark word")
+   ("d" er/mark-defun :name "Mark defun")
+   ("s" er/mark-sentence :name "Mark sentence"))
+  :name "mark")
+ ("k"
+  (("w" er/mark-word :name "Kill word")
+   ("d" er/mark-defun :name "Kill defun")
+   ("s" er/mark-sentence :name "Kill sentence"))
+  :name "kill" :then '(kill-region))
+ ("c"
+  (("w" er/mark-word :name "Change word")
+   ("d" er/mark-defun :name "Change defun")
+   ("s" er/mark-sentence :name "Change sentence"))
+  :name "change" :then '(kill-region) :exit t))
 #+end_src

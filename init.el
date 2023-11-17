@@ -15,5 +15,13 @@
 (org-babel-load-file "~/.emacs.d/denote.org")
 (org-babel-load-file "~/.emacs.d/latex.org")
 (org-babel-load-file "~/.emacs.d/configuration.org")
-(org-babel-load-file "~/.emacs.d/keybindings.org")
+(org-babel-load-file "~/.emacs.d/keybindings-meow.org")
+
+;; Setting up cursor colors after loading everything
+(setq ryo-modal-cursor-type 'box)
+(setq ryo-modal-cursor-color "#CE0058")  ;; Land Grant Grey (VT seondary color)
+
+(setq-default cursor-type 'bar)
+(setq ryo-modal-default-cursor-color "#D7D2CB") ;; Boundless Pink (VT secondary color)
+(set-cursor-color "#D7D22B")
 
