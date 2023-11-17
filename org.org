@@ -20,7 +20,7 @@
    ((string-equal (system-name) "yantra")
 
     ;; The Zenburn theme needs this
-    (load-theme 'org-beautify t)
+    ;;(load-theme 'org-beautify t)
 
     )
    )
