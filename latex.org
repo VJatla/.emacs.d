@@ -18,13 +18,13 @@
 
   (cond
 
-   ((string-equal (system-name) "yatra")
+   ((string-equal (system-name) "yantra")
     (setq TeX-view-program-list '(("Evince" "evince --page-index=%(outpage) %o")))
     (setq TeX-view-program-selection '((output-pdf "Evince")))
     (add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode)
     (setq TeX-source-correlate-start-server t))
 
-   ((string-equal (system-name) "yantra")
+   ((string-equal (system-name) "yatra")
     (setq TeX-view-program-list '(("Okular" "okular --unique %o#src:%n%b")))
     (setq TeX-view-program-selection '((output-pdf "Okular")))
     (add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode)
