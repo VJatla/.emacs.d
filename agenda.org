@@ -1,6 +1,6 @@
 * Agenda files
 #+begin_src emacs-lisp
     (setq org-agenda-files
-	  (append (directory-files-recursively "~/Dropbox/org-tasks/2023/11-Nov/" "\\.org$"))
+	  (append (directory-files-recursively "~/Dropbox/tasks/" "\\.org$"))
 	  )
 #+end_src
