@@ -9,6 +9,13 @@
   (scroll-bar-mode -1)
 #+end_src
 
+** Truncate lines
+
+#+begin_src emacs-lisp
+(set-default 'truncate-lines t)
+
+#+end_src
+
 * Theme
 
 The theme changes depending on system. Comment accordingly.
@@ -21,9 +28,8 @@ The theme changes depending on system. Comment accordingly.
     (load-theme 'solarized-light t))
 
    ((string-equal (system-name) "yantra")
-    (use-package zenburn-theme)
-    (use-package dracula-theme)
-    (load-theme 'zenburn t))
+    (use-package gruvbox-theme)
+    (load-theme 'gruvbox-dark-soft t))
 
    )
 #+end_src

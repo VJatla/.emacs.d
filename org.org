@@ -3,28 +3,6 @@
   (org-babel-do-load-languages
    'org-babel-load-languages '((C . t) (python .t)))
 #+end_src
-* Make ~org~ pretty
-#+begin_src emacs-lisp
-  (cond
-
-
-   ((string-equal (system-name) "yatra")
-
-    ;; Due to leuven-theme org is already pretty!
-    ;;(load-theme 'org-beautify t)
-
-    ;; The modus theme might also need this
-    (load-theme 'org-beautify t)
-    )
-
-   ((string-equal (system-name) "yantra")
-
-    ;; The Zenburn theme needs this
-    ;;(load-theme 'org-beautify t)
-
-    )
-   )
-#+end_src
 * Org states
 ** States
 #+begin_src emacs-lisp
@@ -74,10 +52,4 @@
     '(org-headline-done ((t (:weight normal :strike-through t)))))
    );; End of yantra settings
   )
-
-
-
-
 #+end_src
-
-#+RESULTS:
