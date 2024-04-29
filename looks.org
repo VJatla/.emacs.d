@@ -22,10 +22,9 @@ The theme changes depending on system. Comment accordingly.
 #+begin_src emacs-lisp
   (cond
 
-   ((string-equal (system-name) "yatra")
-    (use-package leuven-theme)
-    (use-package solarized-theme)
-    (load-theme 'solarized-light t))
+   ((string-equal (system-name) "meteorite")
+    (use-package spacemacs-theme)
+    (load-theme 'spacemacs-dark t))
 
    ((string-equal (system-name) "yantra")
     (use-package gruvbox-theme)
@@ -39,10 +38,10 @@ The theme changes depending on system. Comment accordingly.
 #+begin_src emacs-lisp
   (cond
 
-   ((string-equal (system-name) "yatra")
+   ((string-equal (system-name) "meteorite")
 
     (add-to-list 'default-frame-alist
-		 '(font . "Dank Mono-13"))
+		 '(font . "JetBrainsMono-12"))
     )
 
    ((string-equal (system-name) "yantra")
