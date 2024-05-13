@@ -22,7 +22,7 @@ The theme changes depending on system. Comment accordingly.
 #+begin_src emacs-lisp
   (cond
 
-   ((string-equal (system-name) "meteorite")
+   ((string-equal (system-name) "cinder")
     (use-package spacemacs-theme)
     (load-theme 'spacemacs-dark t))
 
@@ -38,7 +38,7 @@ The theme changes depending on system. Comment accordingly.
 #+begin_src emacs-lisp
   (cond
 
-   ((string-equal (system-name) "meteorite")
+   ((string-equal (system-name) "cinder")
 
     (add-to-list 'default-frame-alist
 		 '(font . "JetBrainsMono-12"))
