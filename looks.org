@@ -23,8 +23,9 @@ The theme changes depending on system. Comment accordingly.
   (cond
 
    ((string-equal (system-name) "cinder")
-    (use-package spacemacs-theme)
-    (load-theme 'spacemacs-dark t))
+    (use-package sublime-themes)
+    (load-theme 'brin t)
+    )
 
    ((string-equal (system-name) "yantra")
     (use-package gruvbox-theme)
