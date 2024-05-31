@@ -84,12 +84,12 @@
      '("n" . meow-search)
      '("o" . meow-block)
      '("O" . meow-to-block)
-     '("p" . meow-yank)
+     '("p" . meow-clipboard-yank)
      '("q" . meow-quit)
      '("Q" . meow-goto-line)
      '("r" . meow-replace)
      '("R" . meow-swap-grab)
-     '("s" . meow-kill)
+     '("s" . meow-clipboard-kill)
      '("t" . meow-till)
      '("u" . meow-undo)
      '("U" . meow-undo-in-selection)
@@ -98,10 +98,27 @@
      '("W" . meow-mark-symbol)
      '("x" . meow-line)
      '("X" . meow-goto-line)
-     '("y" . meow-save)
+     '("y" . meow-clipboard-save)
      '("Y" . meow-sync-grab)
      '("z" . meow-pop-selection)
      '("'" . repeat)
      '("<escape>" . ignore)))
   (meow-setup)
 #+end_src
+
+#+RESULTS:
+
+* Custom shortcuts
+
+** Moving around
+
+- Mark pop
+  
+#+begin_src emacs-lisp
+  (meow-leader-define-key
+   '("b" . pop-to-mark-command))
+#+end_src
+
+* Major mode related shortcuts
+
+** LaTeX

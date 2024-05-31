@@ -6,7 +6,7 @@
 #+end_src
 * Use LaTeX as default compilation
 #+begin_src emacs-lisp
-(setq TeX-command-force "LaTex") 
+   (setq TeX-command-force "LaTex BibTex LaTex")
 #+end_src
 * RefTeX
 #+begin_src emacs-lisp

@@ -29,7 +29,10 @@ The theme changes depending on system. Comment accordingly.
 
    ((string-equal (system-name) "yantra")
     (use-package gruvbox-theme)
-    (load-theme 'gruvbox-dark-soft t))
+    (use-package zenburn-theme)
+    (load-theme 'gruvbox-dark-soft t)
+    (load-theme 'zenburn t)
+    )
 
    )
 #+end_src
@@ -48,8 +51,7 @@ The theme changes depending on system. Comment accordingly.
    ((string-equal (system-name) "yantra")
 
     (add-to-list 'default-frame-alist
-		 '(font . "MonoLisa vj-12"))
-
+		 '(font . "JetBrainsMono-22"))
     )
 
    )
