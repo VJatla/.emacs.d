@@ -51,7 +51,7 @@ The theme changes depending on system. Comment accordingly.
    ((string-equal (system-name) "yantra")
 
     (add-to-list 'default-frame-alist
-		 '(font . "JetBrainsMono-22"))
+		 '(font . "FiraCode-12"))
     )
 
    )
