@@ -22,15 +22,13 @@ The theme changes depending on system. Comment accordingly.
 #+begin_src emacs-lisp
   (cond
 
-   ((string-equal (system-name) "cinder")
+   ((string-equal (system-name) "yantra")
     (use-package sublime-themes)
     (load-theme 'brin t)
     )
 
-   ((string-equal (system-name) "yantra")
-    (use-package gruvbox-theme)
+   ((string-equal (system-name) "vahya")
     (use-package zenburn-theme)
-    (load-theme 'gruvbox-dark-soft t)
     (load-theme 'zenburn t)
     )
 
