@@ -12,7 +12,7 @@
 (org-babel-load-file "~/.emacs.d/agenda.org")
 (org-babel-load-file "~/.emacs.d/org.org")
 (org-babel-load-file "~/.emacs.d/markdown.org")
-(org-babel-load-file "~/.emacs.d/denote.org")
+;;(org-babel-load-file "~/.emacs.d/denote.org")
 (org-babel-load-file "~/.emacs.d/latex.org")
 (org-babel-load-file "~/.emacs.d/configuration.org")
 (org-babel-load-file "~/Dropbox/keybindings.org")

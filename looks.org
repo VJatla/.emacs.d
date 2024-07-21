@@ -16,46 +16,30 @@
 
 #+end_src
 
-* Theme
+* vahya, windows-nt
 
-The theme changes depending on system. Comment accordingly.
-#+begin_src emacs-lisp
-  (cond
-
-   ((string-equal (system-name) "yantra")
-    (use-package sublime-themes)
-    (load-theme 'brin t)
-    )
-
-   ((string-equal (system-name) "vahya")
-    (use-package zenburn-theme)
-    (load-theme 'zenburn t)
-    )
-
-   )
-#+end_src
-
-* Font
+** Theme
 
 #+begin_src emacs-lisp
-  (cond
-
-   ((string-equal (system-name) "cinder")
-
-    (add-to-list 'default-frame-alist
-		 '(font . "JetBrainsMono-12"))
-    )
-
-   ((string-equal (system-name) "yantra")
-
-    (add-to-list 'default-frame-alist
-		 '(font . "FiraCode-12"))
-    )
-
-   )
-
-
+(cond
+ ((and (string-equal (downcase (system-name)) "vahya")
+       (eq system-type 'windows-nt))
+  (use-package zenburn-theme
+    :ensure t)
+  (load-theme 'zenburn t)))
 #+end_src
+
+** Font
+#+begin_src emacs-lisp
+  (cond
+   ((and (string-equal (downcase (system-name)) "vahya")
+	 (eq system-type 'windows-nt))
+    (add-to-list 'default-frame-alist
+		 '(font . "JetBrains Mono-10"))
+
+    ))
+#+end_src
+
 
 * Dashboard
 
