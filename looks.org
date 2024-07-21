@@ -34,8 +34,16 @@
   (cond
    ((and (string-equal (downcase (system-name)) "vahya")
 	 (eq system-type 'windows-nt))
+
+    ;; Default font
     (add-to-list 'default-frame-alist
-		 '(font . "JetBrains Mono-10"))
+		 '(font . "JetBrains Mono-11"))
+
+    ;; Fixed pitch font looks bad by default. I will change this to
+    ;; default windows fprogramming font.
+    (set-face-attribute 'fixed-pitch nil
+                    :family "Consolas"
+                    :height 110) ; Adjust height as needed
 
     ))
 #+end_src
