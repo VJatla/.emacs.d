@@ -1,0 +1,33 @@
+* Virtual environment activation
+
+** conda configuration
+
+#+begin_src emacs-lisp
+  (use-package conda
+    :quelpa
+    :init
+    (setq conda-anaconda-home (expand-file-name "/opt/apps/software/Anaconda3/2023.09-0/condabin/conda"))
+    (setq conda-env-home-directory (expand-file-name "~/.conda/envs/")))
+#+end_src
+
+** Python path (Change based on the project)
+
+#+begin_src emacs-lisp
+;; (setq python-shell-exec-path (expand-file-name "~/.conda/envs/nt_gpt2/bin/python"))
+#+end_src
+
+
+* Syntax checking
+
+#+begin_src emacs-lisp
+  (add-hook 'python-mode-hook #'flycheck-mode)
+#+end_src
+
+
+* Language server protocol (Clunky as of now)
+
+** LSP mode
+
+#+begin_src emacs-lisp
+  (add-hook 'python-mode-hook #'lsp)
+#+end_src

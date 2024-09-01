@@ -1,3 +1,0 @@
-#+Title: README
-* Description
-The following emacs configuration 

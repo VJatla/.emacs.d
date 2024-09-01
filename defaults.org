@@ -1,0 +1,96 @@
+* Looks
+
+** Line numbers
+
+#+begin_src emacs-lisp
+  (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+#+end_src
+
+** Temporary files
+
+#+begin_src emacs-lisp
+  (setq backup-directory-alist
+	`((".*" . ,temporary-file-directory)))
+  (setq auto-save-file-name-transforms
+	`((".*" ,temporary-file-directory t)))
+#+end_src
+
+** Disable unnecessary startup gui items
+
+#+begin_src emacs-lisp
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+  (menu-bar-mode -1) 
+#+end_src
+
+** Dashboard
+#+begin_src emacs-lisp
+  ;; use-package with package.el:
+  (use-package dashboard
+    :quelpa
+    :config
+    (dashboard-setup-startup-hook))
+#+end_src
+** Theme
+#+begin_src emacs-lisp
+  (use-package color-theme-sanityinc-tomorrow
+    :quelpa)
+  (load-theme 'sanityinc-tomorrow-eighties t)
+#+end_src
+
+#+RESULTS:
+: t
+** Font
+#+begin_src emacs-lisp
+  (add-to-list 'default-frame-alist
+             '(font . "FiraCode Nerd Font Mono-14"))
+#+end_src
+* Feel
+
+** Which key
+
+#+begin_src emacs-lisp
+  (use-package which-key :quelpa)
+  (which-key-mode)
+#+end_src
+
+** Recentfiles mode
+
+#+begin_src emacs-lisp
+  (recentf-mode 1)
+  (global-set-key "\C-x\ \C-r" 'recentf-open-files)
+#+end_src
+
+** vterm
+
+#+begin_src emacs-lisp
+  ;; (use-package vterm
+  ;;   :quelpa)
+#+end_src
+
+** clipetty
+
+#+begin_src emacs-lisp
+    (use-package clipetty
+      :quelpa
+      :hook (after-init . global-clipetty-mode))
+#+end_src
+
+#+RESULTS:
+| global-clipetty-mode | tramp-register-archive-file-name-handler |
+
+
+* Dependencies
+
+The following packages are needed, but I am not sure their intended
+use.
+
+** Spinner
+
+#+begin_src emacs-lisp
+  (use-package spinner
+    :quelpa (spinner :fetcher github :repo "Malabarba/spinner.el"))
+#+end_src
+
+#+RESULTS:
+: spinner

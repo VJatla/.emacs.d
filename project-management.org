@@ -1,0 +1,6 @@
+* Projectile
+#+begin_src emacs-lisp
+  (use-package projectile
+  :quelpa
+  )
+#+end_src

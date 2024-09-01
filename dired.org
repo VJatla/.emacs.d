@@ -1,0 +1,40 @@
+* dired-mode
+
+** Organize the entries with most recent on the top
+   
+#+begin_src emacs-lisp
+  (setq dired-listing-switches "-lht")
+#+end_src
+
+** Kill previous dired buffers
+
+#+begin_src emacs-lisp
+  ;; (setq dired-kill-when-opening-new-dired-buffer 1)
+#+end_src
+
+** Copy directory recursively
+
+#+begin_src emacs-lisp
+  (setq dired-recursive-copies 'always)     
+#+end_src
+
+** dash (required by dired-narrow)
+
+#+begin_src emacs-lisp
+  (use-package dash
+    :quelpa (dash :fetcher github :repo "magnars/dash.el"))
+#+end_src
+
+** dired-narrow (filtering funtionality):
+
+I have to install this manually from [[https://raw.githubusercontent.com/Fuco1/dired-hacks/master/dired-narrow.el][github]]
+
+#+begin_src emacs-lisp
+  (use-package dired-hacks
+    :quelpa (dired-hacks :fetcher github :repo "Fuco1/dired-hacks")
+    :after dired
+    :bind (:map dired-mode-map
+		("/" . dired-narrow)))
+#+end_src
+
+

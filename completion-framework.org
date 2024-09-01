@@ -1,0 +1,52 @@
+* Minibuffer
+
+** compat
+
+Not sure why I need this, but emacs errors out withou this.
+
+#+begin_src emacs-lisp
+  (use-package compat
+    :quelpa (compat :fetcher github :repo "emacs-compat/compat"))
+#+end_src
+** Vertico
+
+Shows a list of potential completion candidates
+
+#+begin_src emacs-lisp
+  (use-package vertico
+  :quelpa
+  :init
+  (vertico-mode))
+#+end_src
+
+
+** Orderless
+
+Fuzzy search.
+
+#+begin_src emacs-lisp
+  (use-package orderless
+  :quelpa
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
+#+end_src
+
+#+RESULTS:
+: orderless
+
+
+** Consult
+
+Search and navigation commands
+
+#+begin_src emacs-lisp
+  (use-package consult
+    :quelpa
+    :bind (
+	   ("C-s" . consult-line) ;; Rebind C-s to consult-line
+	   ("C-r" . consult-line) ;; Rebind C-r to consult-line
+	   ;; Optionally bind other consult commands here
+	   ))
+#+end_src
+
