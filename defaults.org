@@ -35,7 +35,10 @@
 #+begin_src emacs-lisp
   (use-package color-theme-sanityinc-tomorrow
     :quelpa)
-  (load-theme 'sanityinc-tomorrow-eighties t)
+  (use-package zenburn-theme
+    :quelpa)
+  ;;(load-theme 'sanityinc-tomorrow-eighties t)
+  (load-theme 'zenburn)
 #+end_src
 
 #+RESULTS:

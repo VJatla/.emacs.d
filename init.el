@@ -51,4 +51,5 @@
 (org-babel-load-file "~/.emacs.d/lsp.org")
 (org-babel-load-file "~/.emacs.d/python.org")
 (org-babel-load-file "~/.emacs.d/snippets.org")
+(org-babel-load-file "~/.emacs.d/latex.org")
 (org-babel-load-file "~/Dropbox/keybindings.org")
