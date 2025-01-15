@@ -4,30 +4,14 @@
 
 #+begin_src emacs-lisp
   (use-package conda
-    :quelpa
+    :ensure t
     :init
-    (setq conda-anaconda-home (expand-file-name "/opt/apps/software/Anaconda3/2023.09-0/condabin/conda"))
-    (setq conda-env-home-directory (expand-file-name "~/.conda/envs/")))
+    (setq conda-anaconda-home (expand-file-name "~/anaconda3/"))
+    (setq conda-env-home-directory (expand-file-name "~/anaconda3/envs/")))
 #+end_src
 
-** Python path (Change based on the project)
+** Activating anaconda base env
 
 #+begin_src emacs-lisp
-;; (setq python-shell-exec-path (expand-file-name "~/.conda/envs/nt_gpt2/bin/python"))
-#+end_src
-
-
-* Syntax checking
-
-#+begin_src emacs-lisp
-  (add-hook 'python-mode-hook #'flycheck-mode)
-#+end_src
-
-
-* Language server protocol (Clunky as of now)
-
-** LSP mode
-
-#+begin_src emacs-lisp
-  (add-hook 'python-mode-hook #'lsp)
+(conda-env-activate 'base)
 #+end_src

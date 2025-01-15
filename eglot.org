@@ -1,0 +1,16 @@
+* Installing
+#+begin_src emacs-lisp
+  (use-package eglot
+  :ensure t
+  :defer t
+  :hook (python-mode . eglot-ensure))
+#+end_src
+* Disabling features
+
+** Annoying flymake
+
+#+begin_src emacs-lisp
+  (require 'eglot)
+  (with-eval-after-load "eglot"
+  (add-to-list 'eglot-stay-out-of 'flymake))
+#+end_src

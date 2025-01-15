@@ -46,7 +46,7 @@
 ** Font
 #+begin_src emacs-lisp
   (add-to-list 'default-frame-alist
-             '(font . "FiraCode Nerd Font Mono-14"))
+             '(font . "FiraCode Nerd Font Mono-12"))
 #+end_src
 * Feel
 
@@ -82,7 +82,12 @@
 #+RESULTS:
 | global-clipetty-mode | tramp-register-archive-file-name-handler |
 
-
+* Tools
+** Vterm
+#+begin_src emacs-lisp
+  (use-package vterm
+    :ensure t)
+#+end_src
 * Dependencies
 
 The following packages are needed, but I am not sure their intended

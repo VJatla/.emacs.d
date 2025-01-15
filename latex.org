@@ -29,12 +29,16 @@
 #+end_src
 * Evince sync
 #+begin_src emacs-lisp
-  (setq TeX-source-correlate-method 'synctex)
-  (setq TeX-source-correlate-start-server t)
-  (setq TeX-view-program-selection '((output-pdf "Evince")))
-  (add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode)
+  ;; (setq TeX-source-correlate-method 'synctex)
+  ;; (setq TeX-source-correlate-start-server t)
+  ;; (setq TeX-view-program-selection '((output-pdf "Evince")))
+  ;; (add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode)
 #+end_src
 * Okular sync
 #+begin_src emacs-lisp
+  (setq TeX-source-correlate-method 'synctex)
+  (setq TeX-source-correlate-start-server t)
+  (setq TeX-view-program-selection '((output-pdf "Okular")))
+  (add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode)
 #+end_src
 
