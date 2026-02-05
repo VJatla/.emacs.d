@@ -1,0 +1,31 @@
+* Installing
+#+begin_src emacs-lisp
+  (use-package eglot
+  :ensure t
+  :defer t
+  :hook (python-mode . eglot-ensure))
+#+end_src
+* Disabling features
+
+** Annoying flymake
+
+#+begin_src emacs-lisp
+  (require 'eglot)
+  (with-eval-after-load "eglot"
+  (add-to-list 'eglot-stay-out-of 'flymake))
+#+end_src
+
+** Annonying automatic eldoc
+
+#+begin_src emacs-lisp
+(setq eldoc-echo-area-use-multiline-p nil)
+#+end_src
+* Python specific
+** System file paths
+#+begin_src emacs-lisp
+  (defun my-eglot-python-setup ()
+  "Enable file path completion in Eglot for Python."
+  (add-to-list 'completion-at-point-functions #'cape-file))
+
+(add-hook 'python-mode-hook #'my-eglot-python-setup)
+#+end_src

@@ -1,0 +1,11 @@
+* Type script
+
+** Installations
+
+#+begin_src emacs-lisp
+  (use-package typescript-mode
+    :ensure t)
+#+end_src
+
+#+RESULTS:
+: typescript-mode

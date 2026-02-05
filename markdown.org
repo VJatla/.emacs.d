@@ -1,0 +1,31 @@
+* Org to Github flavoured markdown
+#+BEGIN_SRC emacs-lisp
+  (use-package ox-gfm)
+#+END_SRC
+
+* Markdown mode
+#+begin_src emacs-lisp
+  (use-package markdown-mode
+  :ensure t
+  :mode ("README\\.md\\'" . gfm-mode)
+  :init (setq markdown-command "multimarkdown")
+  :bind (:map markdown-mode-map
+         ("C-c C-e" . markdown-do)))
+#+end_src
+
+* Markdown toc
+#+begin_src emacs-lisp
+  (use-package markdown-toc
+    :ensure t)
+#+end_src
+
+#+RESULTS:
+: ox-gfm
+* Configuration
+** Start flyspell in markdown mode
+#+begin_src emacs-lisp
+  (add-hook 'markdwon-mode-hook 'turn-on-flyspell)
+#+end_src
+
+#+RESULTS:
+| turn-on-flyspell |

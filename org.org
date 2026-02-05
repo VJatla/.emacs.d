@@ -1,0 +1,24 @@
+* Org bullets
+#+begin_src emacs-lisp
+  (use-package org-bullets)
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+#+end_src
+
+* Configuration
+** babel: Executing programs in org
+  #+begin_src emacs-lisp
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((python . t)
+       (gnuplot . t)
+       (R . t)
+       (latex . t)))
+  #+end_src
+** Show only two heading levels on startup
+#+begin_src emacs-lisp
+  (setq org-startup-folded 'show2levels)
+#+end_src
+** Start flyspell in org mode
+#+begin_src emacs-lisp
+  (add-hook 'org-mode-hook 'turn-on-flyspell)
+#+end_src

@@ -1,0 +1,12 @@
+# Ignore everything
+*
+
+# Do not ignore the following files alone
+!/manually_installed/*
+!.gitignore
+!README.md
+!README.org
+!init.el
+!*.org
+!*-theme.el
+!FBRI_logo_small.png

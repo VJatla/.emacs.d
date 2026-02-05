@@ -1,0 +1,19 @@
+* Flycheck
+
+** Install
+
+#+begin_src emacs-lisp
+  (use-package flycheck
+    :ensure t
+    :config
+    (setq-default flycheck-disabled-checkers '(python-pylint)))
+#+end_src
+
+** Error color
+
+#+begin_src emacs-lisp
+  (custom-set-faces
+   '(flycheck-error ((t (:underline (:color "red3") :foreground "red3"))))
+   '(flycheck-warning ((t (:underline (:color "orange3") :foreground "orange3"))))
+   '(flycheck-info ((t (:underline (:color "green3") :foreground "green3")))))
+#+end_src

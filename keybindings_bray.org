@@ -1,0 +1,190 @@
+
+* Custom functions
+** Selecting
+#+begin_src emacs-lisp
+
+  ;; Select symbol
+  (defun custom-mark-symbol ()
+  "Mark the entire symbol (word or identifier) at point."
+  (interactive)
+  (let ((bounds (bounds-of-thing-at-point 'symbol)))
+    (if bounds
+	(progn
+	  (goto-char (car bounds))
+	  (push-mark (cdr bounds) nil t))
+      (user-error "No symbol at point"))))
+
+  ;; mark entire line
+  (defun custom-mark-line ()
+  "Mark the entire current line and move cursor to end of line."
+  (interactive)
+  (end-of-line)
+  (push-mark (line-beginning-position) nil t))
+
+  (defun custom-wrap-region-with-fn (fn)
+  "Wrap the active region (or symbol at point) with FN(...)."
+  (interactive (list (read-string "Function: ")))
+  (let* ((use-region (use-region-p))
+         (beg (if use-region (region-beginning)
+                (car (bounds-of-thing-at-point 'symbol))))
+         (end (if use-region (region-end)
+                (cdr (bounds-of-thing-at-point 'symbol)))))
+    (unless (and beg end)
+      (user-error "No region or symbol at point"))
+    ;; Insert closing first to preserve beg
+    (save-excursion
+      (goto-char end) (insert ")")
+      (goto-char beg) (insert fn "("))
+    ;; Place cursor just after the closing paren
+    (goto-char (+ end (length fn) 2))))
+
+
+  #+end_src
+
+** Reload init file
+#+begin_src emacs-lisp
+  (defun reload-init-file ()
+  "Reload the user's Emacs init file (~/.emacs or init.el)."
+  (interactive)
+  (load-file user-init-file)
+  (message "Reloaded %s" user-init-file))
+#+end_src
+
+** Copy current directory
+#+begin_src emacs-lisp
+  (defun copy-current-directory ()
+  "Copy the current directory path to the kill ring."
+  (interactive)
+  (let ((dir (if (derived-mode-p 'dired-mode)
+                 default-directory
+               (file-name-directory (or (buffer-file-name) default-directory)))))
+    (kill-new dir)
+    (message "Copied: %s" dir)))
+#+end_src
+
+
+
+* Bray mode
+#+begin_src emacs-lisp
+  (use-package bray
+    :ensure t
+    :commands (bray-mode)
+
+    :config
+
+    ;; Typical normal/insert states.
+    (defvar my-bray-state-normal-map (make-keymap))
+    (defvar my-bray-state-insert-map (make-keymap))
+
+    (setq bray-state-default 'normal)
+    (setq bray-state-definitions
+	  (list
+	   (list
+	    :id 'normal
+	    :cursor-type 'box
+	    :lighter "<N>"
+	    :keymaps (list '(t . my-bray-state-normal-map)))
+
+	   (list
+	    :id 'insert
+	    :cursor-type 'bar
+	    :lighter "<I>"
+	    :keymaps (list '(t . my-bray-state-insert-map))
+
+	    ;; Optional.
+	    :is-input t)))
+
+    ;; Optional, a quick way to mask insertion.
+    (define-key my-bray-state-normal-map [remap self-insert-command] 'ignore)
+
+    ;; Moving around
+    (define-key my-bray-state-normal-map (kbd "j") 'backward-char)
+    (define-key my-bray-state-normal-map (kbd "k") 'next-line)
+    (define-key my-bray-state-normal-map (kbd "i") 'previous-line)
+    (define-key my-bray-state-normal-map (kbd "l") 'forward-char)
+    (define-key my-bray-state-normal-map (kbd "o") 'forward-word)
+    (define-key my-bray-state-normal-map (kbd "u") 'backward-word)
+    (define-key my-bray-state-normal-map (kbd "SPC j") 'beginning-of-line)
+    (define-key my-bray-state-normal-map (kbd "SPC l") 'end-of-line)
+
+    ;; Mark
+    (define-key my-bray-state-normal-map (kbd "m l") 'custom-mark-line)
+    (define-key my-bray-state-normal-map (kbd "m s") 'custom-mark-symbol)
+    (define-key my-bray-state-normal-map (kbd "m m") 'set-mark-command)
+
+    ;; Editing
+    (define-key my-bray-state-normal-map (kbd "n") (kbd "RET"))
+    (define-key my-bray-state-normal-map (kbd "e c") 'comment-line)
+    (define-key my-bray-state-normal-map (kbd "e u") 'uncomment-region)
+    (define-key my-bray-state-normal-map (kbd "b") [backspace])
+    (define-key my-bray-state-normal-map (kbd "d") [delete])
+    (define-key my-bray-state-normal-map (kbd "t") 'indent-for-tab-command)
+    (define-key my-bray-state-normal-map (kbd "g") 'keyboard-quit)
+    (define-key my-bray-state-normal-map (kbd "x") 'kill-region)
+    (define-key my-bray-state-normal-map (kbd "c") 'kill-ring-save)
+    (define-key my-bray-state-normal-map (kbd "v") 'yank)
+    (define-key my-bray-state-normal-map (kbd "-") 'undo)
+
+    ;; Window management
+    (define-key my-bray-state-normal-map (kbd "w") 'ace-window)
+
+    ;; Open
+    (define-key my-bray-state-normal-map (kbd "SPC o f") 'counsel-find-file)
+    (define-key my-bray-state-normal-map (kbd "SPC o d") 'counsel-bookmarked-directory)
+    (define-key my-bray-state-normal-map (kbd "SPC o b") 'counsel-bookmark)
+    (define-key my-bray-state-normal-map (kbd "SPC o r") 'counsel-recentf)
+
+    ;; Recent files
+    (define-key my-bray-state-normal-map (kbd "SPC r") 'counsel-recentf)
+
+    ;; Buffers
+    (define-key my-bray-state-normal-map (kbd "SPC b") 'counsel-switch-buffer)
+
+    ;; Map SPC x to Ctrl-x keymaps
+    (define-key my-bray-state-normal-map (kbd "SPC x") ctl-x-map)
+
+    ;; Save
+    (define-key my-bray-state-normal-map (kbd "SPC s") 'save-buffer)
+
+    ;; Kill
+    (define-key my-bray-state-normal-map (kbd "SPC k") 'kill-buffer)
+
+    ;; Copy
+    (define-key my-bray-state-normal-map (kbd "SPC c d") 'copy-current-directory)
+
+    ;; Reload dot ile
+    (define-key my-bray-state-normal-map (kbd "SPC .") 'reload-init-file)
+
+    ;; Insert mode & escape to leave.
+    (define-key
+     my-bray-state-normal-map (kbd "3")
+     (lambda ()
+       (interactive)
+       (bray-state-stack-push 'insert)))
+    (define-key
+     my-bray-state-normal-map (kbd "8")
+     (lambda ()
+       (interactive)
+       (bray-state-stack-push 'insert)))
+
+    (define-key my-bray-state-insert-map (kbd "ESC") 'bray-state-stack-pop))
+
+  ;; Enable bray for "typical" editing operation.
+  (add-hook
+   'after-change-major-mode-hook
+   (lambda ()
+     (when (and (not (minibufferp))
+		(not (derived-mode-p 'special-mode))
+		(not (derived-mode-p 'dired-mode)))
+       (bray-mode))))
+#+end_src
+
+#+RESULTS:
+| #[nil ((when (and (not (minibufferp)) (not (derived-mode-p 'special-mode))) (bray-mode))) nil] | global-clipetty-mode-enable-in-buffer | #[nil ((if (and (not (minibufferp)) (not (derived-mode-p 'special-mode))) (progn (bray-mode)))) nil] | yas-global-mode-enable-in-buffer | eglot--maybe-activate-editing-mode | global-corfu-mode-enable-in-buffer | auto-revert--global-possibly-adopt-current-buffer | global-eldoc-mode-enable-in-buffer | global-font-lock-mode-enable-in-buffer | which-func-ff-hook |
+
+
+* Major modes keymap
+** Dashboard
+#+begin_src emacs-lisp
+  (add-hook 'dashboard-mode-hook #'bray-mode)
+#+end_src

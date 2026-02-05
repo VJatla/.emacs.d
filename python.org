@@ -1,0 +1,42 @@
+* Virtual environment activation
+** conda configuration
+
+#+begin_src emacs-lisp
+  (when (string= (system-name) "VT000447010")
+    (use-package conda
+      :ensure t
+      :init
+      (setq conda-anaconda-home (expand-file-name "~/anaconda3/"))
+      (setq conda-env-home-directory (expand-file-name "~/anaconda3/envs/")))
+    (conda-env-activate 'base)
+    )
+
+  (when (string= (system-name) "VME-PRD-HNL01N.vtcri.local")
+    (use-package conda
+      :ensure t
+      :init
+      (setq conda-anaconda-home (expand-file-name "~/anaconda3/"))
+      (setq conda-env-home-directory (expand-file-name "~/anaconda3/envs/")))
+    (conda-env-activate 'base)
+    )
+#+end_src
+
+* Looks
+** Thin lines showing code indent
+#+begin_src emacs-lisp
+  ;; (use-package highlight-indent-guides
+  ;; :ensure t
+  ;; :hook (python-mode . highlight-indent-guides-mode)
+  ;; :init
+  ;; (setq highlight-indent-guides-method 'character)  ; thin vertical lines
+  ;; (setq highlight-indent-guides-auto-enabled t)
+  ;; (setq highlight-indent-guides-character ?\│)      ; Unicode thin line
+  ;; (setq highlight-indent-guides-responsive 'top))
+#+end_src
+
+*** Make the indent line lighter
+#+begin_src emacs-lisp
+  (custom-set-faces
+ '(highlight-indent-guides-character-face
+   ((t (:foreground "#444" :height 0.9)))))
+#+end_src

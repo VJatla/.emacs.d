@@ -1,0 +1,116 @@
+* dired-mode
+** Auto refresh dired mode
+#+begin_src emacs-lisp
+  ;;(add-hook 'dired-mode-hook 'auto-revert-mode)
+#+end_src
+** Organize the entries with most recent on the top
+   
+#+begin_src emacs-lisp
+  (setq dired-listing-switches "-lht")
+#+end_src
+
+** Copy directory recursively
+
+#+begin_src emacs-lisp
+  (setq dired-recursive-copies 'always)     
+#+end_src
+
+** dash (required by dired-narrow)
+
+#+begin_src emacs-lisp
+  (use-package dash :ensure t)
+#+end_src
+
+** dired-narrow (filtering funtionality):
+
+I have to install this manually from [[https://raw.githubusercontent.com/Fuco1/dired-hacks/master/dired-narrow.el][github]]
+
+1. cd to ~/home/vjatla/.emacs.d/manually_installed~.
+2. Git clone, ~git clone https://github.com/Fuco1/dired-hacks.git~
+
+#+begin_src emacs-lisp
+  (add-to-list 'load-path "~/.emacs.d/manually_installed/dired-hacks/")
+  (require 'dired-narrow)
+  (define-key dired-mode-map (kbd "/") 'dired-narrow)
+#+end_src
+
+#+RESULTS:
+: dired-narrow
+
+** Dired subtree
+#+begin_src emacs-lisp
+    (use-package dired-subtree
+      :ensure t
+      :after dired
+      :config
+      (setq dired-subtree-use-backgrounds nil)
+      :bind (:map dired-mode-map
+		  ("i" . dired-previous-line)
+		  ("k" . dired-next-line)
+		  ("t" . dired-subtree-toggle)))
+
+    (defun my/dired-copy-full-path ()
+      "Copy the full absolute path of the file or directory at point."
+      (interactive)
+      (let ((path (expand-file-name (dired-get-filename))))
+	(kill-new path)
+	(message "Copied full path: %s" path)))
+
+    (with-eval-after-load 'dired
+      (define-key dired-mode-map (kbd "SPC") nil)
+
+      ;; open <-- same as bray mode
+      (define-key dired-mode-map (kbd "SPC o f") 'counsel-find-file)
+      (define-key dired-mode-map (kbd "SPC o d") 'counsel-bookmarked-directory)
+      (define-key dired-mode-map (kbd "SPC o b") 'counsel-bookmark)
+      (define-key dired-mode-map (kbd "SPC o r") 'counsel-recentf)
+
+      ;; Recent files
+      (define-key dired-mode-map (kbd "SPC r") 'counsel-recentf)
+
+      ;; Buffers
+      (define-key dired-mode-map (kbd "SPC b") 'counsel-switch-buffer)
+
+      ;; Map SPC x to Ctrl-x keymaps
+      (define-key dired-mode-map (kbd "SPC x") ctl-x-map)
+
+      ;; Reload init file
+      (define-key dired-mode-map (kbd "SPC .") 'reload-init-file)
+
+      (define-key dired-mode-map (kbd "n") #'dired-copy-filename-as-kill)
+      (define-key dired-mode-map (kbd "p") #'my/dired-copy-full-path)
+      (define-key dired-mode-map (kbd "w") #'ace-window))
+
+#+end_src
+
+* Looks
+** Disable truncate lines
+#+begin_src emacs-lisp
+  (add-hook 'dired-mode-hook (lambda () (setq truncate-lines 1)))
+#+end_src
+** Show file name in the minibuffer on navigation
+#+begin_src emacs-lisp
+  ;; Echo the current Dired filename in the minibuffer while navigating
+  (defvar-local my-dired--echo-last-line nil)
+
+  (defun my-dired--echo-file ()
+    "Echo absolute path of file/dir at point in Dired."
+    (when (and (derived-mode-p 'dired-mode)
+	       (not (active-minibuffer-window)))     ;; don't stomp prompts
+      (let* ((ln (line-number-at-pos))
+	     (f  (ignore-errors (dired-get-filename 'verbatim t))))
+	(when (and f (not (equal ln my-dired--echo-last-line)))
+	  (setq my-dired--echo-last-line ln)
+	  (message "%s" (abbreviate-file-name f))))))
+
+  (define-minor-mode my-dired-echo-file-mode
+    "Show the file/dir at point in the minibuffer in Dired."
+    :init-value t
+    :lighter ""
+    (if my-dired-echo-file-mode
+	(add-hook 'post-command-hook #'my-dired--echo-file nil t)
+      (remove-hook 'post-command-hook #'my-dired--echo-file t)))
+
+  (add-hook 'dired-mode-hook #'my-dired-echo-file-mode)
+
+#+end_src

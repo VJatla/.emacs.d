@@ -1,0 +1,4 @@
+* Pacman
+#+begin_src emacs-lisp
+  (use-package pacmacs)
+#+end_src

@@ -1,0 +1,8 @@
+* Yasnppets
+
+#+begin_src emacs-lisp
+  (use-package yasnippet
+    :ensure t
+  :config
+  (yas-global-mode 1))
+#+end_src

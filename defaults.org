@@ -1,0 +1,212 @@
+* Looks
+** File menu
+#+begin_src emacs-lisp
+  (menu-bar-mode -1)
+#+end_src
+** Line numbers
+
+#+begin_src emacs-lisp
+  (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+#+end_src
+
+** Temporary files
+
+#+begin_src emacs-lisp
+  (setq backup-directory-alist
+	`((".*" . ,temporary-file-directory)))
+  (setq auto-save-file-name-transforms
+	`((".*" ,temporary-file-directory t)))
+#+end_src
+
+** Disable unnecessary startup gui items
+
+#+begin_src emacs-lisp
+  (when (display-graphic-p)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+  (menu-bar-mode -1))
+#+end_src
+
+** Dashboard
+#+begin_src emacs-lisp
+  ;; use-package with package.el:
+  (use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook)
+  (define-key dashboard-mode-map (kbd "SPC o f") #'counsel-find-file)
+  (define-key dashboard-mode-map (kbd "SPC o d") #'counsel-bookmarked-directory)
+  (define-key dashboard-mode-map (kbd "SPC o b") #'counsel-bookmark)
+  (define-key dashboard-mode-map (kbd "SPC o r") #'counsel-recentf))
+#+end_src
+
+** Theme and Font
+#+begin_src emacs-lisp
+  	  (use-package zenburn-theme)
+  	  (use-package color-theme-sanityinc-tomorrow)
+  	  (use-package leuven-theme)
+  	  (use-package spacemacs-theme :ensure t)
+  (use-package nord-theme)
+
+  	  (when (string= (system-name) "VME-PRD-HNL01N.vtcri.local")
+  	    (load-theme 'zenburn t)
+  	    )
+
+  (when (string-match "turing" (downcase (system-name)))
+    ;; clone to ~/.emacs.d/ from https://github.com/sellout/emacs-color-theme-solarized
+    (add-to-list 'custom-theme-load-path
+  	       "~/.emacs.d/emacs-color-theme-solarized")
+
+    (add-hook 'after-make-frame-functions
+  	  (lambda (frame)
+  	    (solarized-update-background-mode
+  	     (if (display-graphic-p frame) 'light 'dark)
+  	     (list frame))))
+
+  	(load-theme 'solarized t))
+
+  (when (string-match "HNL-PRD-APP03.VTCRI.LOCAL" (downcase (system-name)))
+    ;; clone to ~/.emacs.d/ from https://github.com/sellout/emacs-color-theme-solarized
+    (add-to-list 'custom-theme-load-path
+  	       "~/.emacs.d/emacs-color-theme-solarized")
+
+    (add-hook 'after-make-frame-functions
+  	  (lambda (frame)
+  	    (solarized-update-background-mode
+  	     (if (display-graphic-p frame) 'light 'dark)
+  	     (list frame))))
+
+  	(load-theme 'solarized t))
+
+  (when (string-match "HNL-PRD-APP02.vtcri.local" (downcase (system-name)))
+    ;; clone to ~/.emacs.d/ from https://github.com/sellout/emacs-color-theme-solarized
+    (add-to-list 'custom-theme-load-path
+  	       "~/.emacs.d/emacs-color-theme-solarized")
+
+    (add-hook 'after-make-frame-functions
+  	  (lambda (frame)
+  	    (solarized-update-background-mode
+  	     (if (display-graphic-p frame) 'light 'dark)
+  	     (list frame))))
+
+  	(load-theme 'solarized t))
+
+
+
+
+  	  (when (string= (system-name) "VT000447010")
+  	    (load-theme 'spacemacs-light t))
+
+  	  (when (string= (system-name) "VT000504741")
+  	      (load-theme 'leuven t))
+
+    (when (string= (system-name) "fedora")
+      (load-theme 'spacemacs-light t))
+
+#+end_src
+
+** Font
+#+begin_src emacs-lisp
+  (add-to-list 'default-frame-alist
+		 '(font . "JetBrains Mono-16"))
+
+  (when (string= (system-name) "yatra")
+  (add-to-list 'default-frame-alist
+	       '(font . "JetBrains Mono-12")))
+
+  (when (string= (system-name) "fedora")
+  (add-to-list 'default-frame-alist
+	       '(font . "JetBrains Mono-12")))
+(when (string= (system-name) "VT000504741")
+  (add-to-list 'default-frame-alist
+	       '(font . "JetBrains Mono-12")))
+
+#+end_src
+
+** Truncate lines
+Do not truncate lines in programming mode
+#+begin_src emacs-lisp
+  (add-hook 'prog-mode-hook (lambda () (setq truncate-lines nil)))
+#+end_src
+** Highlight line by default
+#+begin_src emacs-lisp
+  (global-hl-line-mode 1)
+  (set-face-foreground 'highlight nil) 
+#+end_src
+
+#+RESULTS:
+: t
+
+* Feel
+** surround pairs
+#+begin_src emacs-lisp
+  (use-package surround :ensure t)
+#+end_src
+
+#+RESULTS:
+: surround
+
+** Which key
+
+#+begin_src emacs-lisp
+  (use-package which-key)
+  (which-key-mode)
+#+end_src
+
+** Recentfiles mode
+
+#+begin_src emacs-lisp
+  (recentf-mode 1)
+  (setq recentf-max-menu-items 500)
+  (setq recentf-max-saved-items 500)
+  (global-set-key "\C-x\ \C-r" 'recentf-open-files)
+#+end_src
+
+** vterm
+
+#+begin_src emacs-lisp
+  (when (display-graphic-p)
+    (use-package vterm))
+#+end_src
+
+** clipetty
+
+#+begin_src emacs-lisp
+    (use-package clipetty
+      :hook (after-init . global-clipetty-mode))
+#+end_src
+
+** Load file on change
+#+begin_src emacs-lisp
+  (global-auto-revert-mode 1)
+#+end_src
+** matching paranthesis and quotes (electric-pair)
+#+begin_src emacs-lisp
+(electric-pair-mode 1)
+#+end_src
+** Easy window size
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-M-<left>")  (lambda () (interactive) (shrink-window-horizontally 5)))
+  (global-set-key (kbd "C-M-<right>") (lambda () (interactive) (enlarge-window-horizontally 5)))
+  (global-set-key (kbd "C-M-<down>")  (lambda () (interactive) (shrink-window 5)))
+  (global-set-key (kbd "C-M-<up>")    (lambda () (interactive) (enlarge-window 5)))
+#+end_src
+* Dependencies
+
+The following packages are needed, but I am not sure their intended
+use.
+
+** Spinner
+
+#+begin_src emacs-lisp
+  (use-package spinner)
+#+end_src
+
+#+RESULTS:
+: spinner
+
+** dash
+#+begin_src emacs-lisp
+  (use-package dash
+    :ensure t)
+#+end_src

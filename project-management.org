@@ -1,0 +1,44 @@
+* Projectile
+#+begin_src emacs-lisp
+  (use-package projectile
+    :ensure t
+    :init
+    (setq projectile-enable-caching t)
+    (setq projectile-auto-discover t)
+    :config
+    (projectile-mode +1)
+  )
+#+end_src
+
+* git
+** Magit
+#+begin_src emacs-lisp
+  (use-package magit
+    :ensure t)
+#+end_src
+** Git gutter
+#+begin_src emacs-lisp
+  (when (string= (system-name) "VT000447010")
+    (use-package git-gutter-fringe
+      :ensure t
+      :config
+      (global-git-gutter-mode +1)))
+#+end_src
+* ripgrep
+#+begin_src emacs-lisp
+  (use-package ripgrep
+    :ensure t)
+#+end_src
+
+* Sidebar
+** Dired Sidebar
+#+begin_src emacs-lisp
+  (use-package dired-sidebar
+  :ensure t
+  :commands (dired-sidebar-toggle-sidebar))
+#+end_src
+* imenu-list
+#+begin_src emacs-lisp
+  (use-package imenu-list
+  :ensure t)
+#+end_src

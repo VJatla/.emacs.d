@@ -1,0 +1,47 @@
+* Agenda files
+#+begin_src emacs-lisp
+    (setq org-agenda-files
+	  (append (directory-files-recursively "~/Dropbox/agenda/2025/" "\\.org$"))
+	  )
+#+end_src
+
+* Previous level heading
+#+begin_src emacs-lisp
+  ;; Display previous level headings for a task
+  (setq org-agenda-prefix-format '((agenda . " %i %-12:c%?-12t% s")
+				   (timeline . "  % s")
+				   (todo .
+					 " %i %-12:c %(concat \"[ \"(org-format-outline-path (org-get-outline-path)) \" ]\") ")
+				   (tags .
+					 " %i %-12:c %(concat \"[ \"(org-format-outline-path (org-get-outline-path)) \" ]\") ")
+				   (search . " %i %-12:c"))
+	)
+#+end_src
+
+* Todo keywords
+
+#+begin_src emacs-lisp
+  (setq org-todo-keywords
+      '((sequence "TODO(t)" "INPROGRESS(i)" "WAITING(w)" "LATER(l)" "|" "DONE(d!)" "CANCELED(c@/!)")))
+
+  (setq org-todo-keyword-faces
+ '(("LATER" . "Black") ("TODO" . "Red") ("INPROGRESS" . "RoyalBlue") ("WAITING" . "magenta2") ("CANCELED" . "gray") ("DONE" . "SeaGreen"))
+ )
+#+end_src
+
+* Log into drawer
+#+begin_src emacs-lisp
+  (setq org-log-into-drawer t)
+#+end_src
+
+* Keybindings
+#+begin_src emacs-lisp
+  (defun my/open-agenda ()
+  (interactive)
+  (org-agenda nil "n"))
+
+  (global-set-key (kbd "C-c a") 'my/open-agenda)
+#+end_src
+
+#+RESULTS:
+: my/open-agenda

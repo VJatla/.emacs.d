@@ -1,0 +1,11 @@
+* Installation
+#+begin_src emacs-lisp
+  ;; Install and configure xah-fly-keys
+(use-package xah-fly-keys
+  :ensure t
+  :config
+  ;; Load default layout (QWERTY)
+  (xah-fly-keys-set-layout "qwerty")
+  ;; Enable globally
+  (xah-fly-keys 1))
+#+end_src

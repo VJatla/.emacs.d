@@ -1,0 +1,19 @@
+* Installation
+
+#+begin_src emacs-lisp
+    (use-package lsp-mode
+  :ensure t
+      :init
+      ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+      (setq lsp-keymap-prefix "C-c l")
+      :hook (
+  	   (lsp-mode . lsp-enable-which-key-integration))
+      :commands lsp)
+  (require 'lsp)
+#+end_src
+
+* Cofniguration
+
+#+begin_src emacs-lisp
+  (setq lsp-enable-file-watchers nil)
+#+end_src
