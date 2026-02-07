@@ -1,0 +1,28 @@
+* AI Tools Configuration
+
+** Transient (dependency for gptel)
+
+#+begin_src emacs-lisp
+  (use-package transient
+    :straight (:host github :repo "magit/transient"))
+#+end_src
+
+** GPTel - LLM Integration
+
+#+begin_src emacs-lisp
+  (use-package gptel
+    :straight (:host github :repo "karthink/gptel")
+    :config
+    ;; Set your preferred backend and API key
+    ;; (setq gptel-api-key "your-api-key-here")
+    ;; Or use auth-source: (setq gptel-api-key (auth-source-pick-first-password :host "api.openai.com"))
+    )
+#+end_src
+
+** GPTel Agent - Advanced AI Workflows
+
+#+begin_src emacs-lisp
+  (use-package gptel-agent
+    :straight (:host github :repo "karthink/gptel-extensions" :files ("gptel-agent.el"))
+    :after gptel)
+#+end_src

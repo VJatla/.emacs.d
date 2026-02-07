@@ -8,18 +8,34 @@
 (setq native-comp-async-report-warnings-errors nil)
 (setq byte-compile-warnings '(not free-vars unresolved noruntime lexical make-local))
 
-;; Emacs package management, use-package + quelpa
+;; Emacs package management, use-package + straight.el
 
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t);; (unofficial) Milkypostman’s Emacs Lisp Package Archive
-(package-initialize)
+;; Bootstrap straight.el
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 6))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
+;; Install use-package via straight
+(straight-use-package 'use-package)
+
+;; Configure use-package to use straight.el by default
 (eval-and-compile
-  (setq use-package-always-ensure t
+  (setq straight-use-package-by-default t
         use-package-expand-minimally t))
+
+;; Keep package.el setup for any legacy packages if needed
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
 
 ;; Nice defaults
 (org-babel-load-file "~/.emacs.d/defaults.org")
@@ -33,7 +49,7 @@
 (org-babel-load-file "~/.emacs.d/checking-framework.org")
 ;;(org-babel-load-file "~/.emacs.d/lsp.org")
 (org-babel-load-file "~/.emacs.d/eglot.org")
-;;(org-babel-load-file "~/.emacs.d/ai.org")
+(org-babel-load-file "~/.emacs.d/ai.org")
 (org-babel-load-file "~/.emacs.d/python.org")
 (org-babel-load-file "~/.emacs.d/typescript.org")
 (org-babel-load-file "~/.emacs.d/snippets.org")
