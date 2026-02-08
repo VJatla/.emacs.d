@@ -24,6 +24,9 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
+;; Tell straight.el to use built-in project.el instead of installing it
+(straight-use-package '(project :type built-in))
+
 ;; Install use-package via straight
 (straight-use-package 'use-package)
 
@@ -49,12 +52,12 @@
 (org-babel-load-file "~/.emacs.d/checking-framework.org")
 ;;(org-babel-load-file "~/.emacs.d/lsp.org")
 (org-babel-load-file "~/.emacs.d/eglot.org")
-(org-babel-load-file "~/.emacs.d/ai.org")
 (org-babel-load-file "~/.emacs.d/python.org")
 (org-babel-load-file "~/.emacs.d/typescript.org")
 (org-babel-load-file "~/.emacs.d/snippets.org")
 (org-babel-load-file "~/.emacs.d/latex.org")
 (org-babel-load-file "~/.emacs.d/fun.org")
+(org-babel-load-file "~/.emacs.d/gptel.org")
 ;;(org-babel-load-file "~/.emacs.d/llms.org")
 ;;(org-babel-load-file "~/Dropbox/keybindings.org")
 
@@ -71,10 +74,10 @@
   (org-babel-load-file "~/.emacs.d/agenda.org")
   (org-babel-load-file "~/Dropbox/keybindings_meow.org"))
 
-(when (string= (system-name) "fedora")
+(when (string= (system-name) "yatra")
   (org-babel-load-file "~/.emacs.d/denote.org")
   (org-babel-load-file "~/.emacs.d/agenda.org")
-  (org-babel-load-file "~/Dropbox/keybindings_bray.org"))
+  (org-babel-load-file "~/Dropbox/keybindings_meow.org"))
 
 (when (string= (system-name) "VME-PRD-HNL01N.vtcri.local")
   (org-babel-load-file "~/.emacs.d/keybindings_meow.org"))

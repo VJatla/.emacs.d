@@ -1,0 +1,21 @@
+* gptel
+
+** Installation
+
+Using straight to get the latest from GitHub.
+#+begin_src emacs-lisp
+    (use-package gptel
+      :straight (:host github :repo "karthink/gptel"))
+
+    (use-package transient
+      :straight (:host github :repo "magit/transient"))
+#+end_src
+
+** Configuration
+
+*** OpenAI
+
+#+begin_src emacs-lisp
+  (setq gptel-api-key
+        (auth-source-pick-first-password :host "api.openai.com"))
+#+end_src
