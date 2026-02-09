@@ -11,6 +11,7 @@ Using straight to get the latest from GitHub.
       :straight (:host github :repo "magit/transient"))
 #+end_src
 
+
 ** Configuration
 
 *** OpenAI
