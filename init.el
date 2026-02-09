@@ -79,6 +79,11 @@
   (org-babel-load-file "~/.emacs.d/agenda.org")
   (org-babel-load-file "~/Dropbox/keybindings_meow.org"))
 
+(when (string= (system-name) "vmi2637211")
+  (org-babel-load-file "~/.emacs.d/denote.org")
+  (org-babel-load-file "~/.emacs.d/agenda.org")
+  (org-babel-load-file "~/Dropbox/keybindings_meow.org"))
+
 (when (string= (system-name) "VME-PRD-HNL01N.vtcri.local")
   (org-babel-load-file "~/.emacs.d/keybindings_meow.org"))
 

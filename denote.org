@@ -7,7 +7,7 @@
   (require 'denote)
 
   ;; Remember to check the doc strings of those variables.
-  (setq denote-directory (expand-file-name "~/Dropbox/FBRI/notes/"))
+  (setq denote-directory (expand-file-name "~/Dropbox/notes/org/"))
   (setq denote-infer-keywords t)
   (setq denote-sort-keywords t)
   (setq denote-file-type 'markdown-yaml) ; Org is the default, set others here
