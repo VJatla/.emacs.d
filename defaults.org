@@ -48,47 +48,28 @@
   	  (use-package spacemacs-theme :ensure t)
   (use-package nord-theme)
 
+  ;; Solarized theme that works in terminal
+    (use-package solarized-theme
+    :straight (:host github :repo "sellout/emacs-color-theme-solarized")
+    :config
+    ;; Update background mode when new frames are created
+    (add-hook 'after-make-frame-functions
+              (lambda (frame)
+                (solarized-update-background-mode
+                 (if (display-graphic-p frame) 'dark 'light)
+                 (list frame)))))
+
   	  (when (string= (system-name) "VME-PRD-HNL01N.vtcri.local")
   	    (load-theme 'zenburn t)
   	    )
 
   (when (string-match "turing" (downcase (system-name)))
-    ;; clone to ~/.emacs.d/ from https://github.com/sellout/emacs-color-theme-solarized
-    (add-to-list 'custom-theme-load-path
-  	       "~/.emacs.d/emacs-color-theme-solarized")
-
-    (add-hook 'after-make-frame-functions
-  	  (lambda (frame)
-  	    (solarized-update-background-mode
-  	     (if (display-graphic-p frame) 'light 'dark)
-  	     (list frame))))
-
   	(load-theme 'solarized t))
 
   (when (string-match "HNL-PRD-APP03.VTCRI.LOCAL" (downcase (system-name)))
-    ;; clone to ~/.emacs.d/ from https://github.com/sellout/emacs-color-theme-solarized
-    (add-to-list 'custom-theme-load-path
-  	       "~/.emacs.d/emacs-color-theme-solarized")
-
-    (add-hook 'after-make-frame-functions
-  	  (lambda (frame)
-  	    (solarized-update-background-mode
-  	     (if (display-graphic-p frame) 'light 'dark)
-  	     (list frame))))
-
-  	(load-theme 'solarized t))
+  	(load-theme 'spacemacs-dark t))
 
   (when (string-match "HNL-PRD-APP02.vtcri.local" (downcase (system-name)))
-    ;; clone to ~/.emacs.d/ from https://github.com/sellout/emacs-color-theme-solarized
-    (add-to-list 'custom-theme-load-path
-  	       "~/.emacs.d/emacs-color-theme-solarized")
-
-    (add-hook 'after-make-frame-functions
-  	  (lambda (frame)
-  	    (solarized-update-background-mode
-  	     (if (display-graphic-p frame) 'light 'dark)
-  	     (list frame))))
-
   	(load-theme 'solarized t))
 
 
