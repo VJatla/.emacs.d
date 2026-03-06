@@ -13,76 +13,74 @@
 
 #+begin_src emacs-lisp
   (setq backup-directory-alist
-	`((".*" . ,temporary-file-directory)))
+        `((".*" . ,temporary-file-directory)))
   (setq auto-save-file-name-transforms
-	`((".*" ,temporary-file-directory t)))
+        `((".*" ,temporary-file-directory t)))
 #+end_src
 
 ** Disable unnecessary startup gui items
 
 #+begin_src emacs-lisp
   (when (display-graphic-p)
-  (tool-bar-mode -1)
-  (scroll-bar-mode -1)
-  (menu-bar-mode -1))
+    (tool-bar-mode -1)
+    (scroll-bar-mode -1)
+    (menu-bar-mode -1))
 #+end_src
 
 ** Dashboard
 #+begin_src emacs-lisp
   ;; use-package with package.el:
   (use-package dashboard
-  :ensure t
-  :config
-  (dashboard-setup-startup-hook)
-  (define-key dashboard-mode-map (kbd "SPC o f") #'counsel-find-file)
-  (define-key dashboard-mode-map (kbd "SPC o d") #'counsel-bookmarked-directory)
-  (define-key dashboard-mode-map (kbd "SPC o b") #'counsel-bookmark)
-  (define-key dashboard-mode-map (kbd "SPC o r") #'counsel-recentf))
+    :ensure t
+    :config
+    (dashboard-setup-startup-hook)
+    (define-key dashboard-mode-map (kbd "SPC o f") #'counsel-find-file)
+    (define-key dashboard-mode-map (kbd "SPC o d") #'counsel-bookmarked-directory)
+    (define-key dashboard-mode-map (kbd "SPC o b") #'counsel-bookmark)
+    (define-key dashboard-mode-map (kbd "SPC o r") #'counsel-recentf))
 #+end_src
 
 ** Theme and Font
 #+begin_src emacs-lisp
-  	  (use-package zenburn-theme)
-  	  (use-package color-theme-sanityinc-tomorrow)
-  	  (use-package leuven-theme)
-  	  (use-package spacemacs-theme :ensure t)
-  (use-package nord-theme)
+    (use-package zenburn-theme)
+    (use-package color-theme-sanityinc-tomorrow)
+    (use-package leuven-theme)
+    (use-package spacemacs-theme :ensure t)
+    (use-package nord-theme)
 
-  ;; Solarized theme that works in terminal
+    ;; Solarized theme that works in terminal
     (use-package solarized-theme
-    :straight (:host github :repo "sellout/emacs-color-theme-solarized")
-    :config
-    ;; Update background mode when new frames are created
-    (add-hook 'after-make-frame-functions
-              (lambda (frame)
-                (solarized-update-background-mode
-                 (if (display-graphic-p frame) 'dark 'light)
-                 (list frame)))))
+      :straight (:host github :repo "sellout/emacs-color-theme-solarized")
+      :config
+      ;; Update background mode when new frames are created
+      (add-hook 'after-make-frame-functions
+                (lambda (frame)
+                  (solarized-update-background-mode
+                   (if (display-graphic-p frame) 'dark 'light)
+                   (list frame)))))
 
-  	  (when (string= (system-name) "VME-PRD-HNL01N.vtcri.local")
-  	    (load-theme 'zenburn t)
-  	    )
+    (when (string= (system-name) "VME-PRD-HNL01N.vtcri.local")
+      (load-theme 'zenburn t)
+      )
 
-  (when (string-match "turing" (downcase (system-name)))
-  	(load-theme 'solarized t))
+    (when (string-match "turing" (downcase (system-name)))
+      (load-theme 'solarized t))
 
-  (when (string-match "HNL-PRD-APP03.VTCRI.LOCAL" (downcase (system-name)))
-  	(load-theme 'spacemacs-dark t))
+    (when (string-match "HNL-PRD-APP03.VTCRI.LOCAL" (downcase (system-name)))
+      (load-theme 'spacemacs-dark t))
 
-  (when (string-match "HNL-PRD-APP02.vtcri.local" (downcase (system-name)))
-  	(load-theme 'solarized t))
-
-
+    (when (string-match "HNL-PRD-APP02.vtcri.local" (downcase (system-name)))
+      (load-theme 'solarized t))
 
 
-  	  (when (string= (system-name) "VT000447010")
-  	    (load-theme 'spacemacs-light t))
 
-  	  (when (string= (system-name) "VT000504741")
-  	      (load-theme 'leuven t))
 
-    (when (string= (system-name) "fedora")
+    (when (string= (system-name) "VT000447010")
       (load-theme 'spacemacs-light t))
+
+    (when (string= (system-name) "VT000504741")
+      (load-theme 'spacemacs-light t))
+
 
 #+end_src
 
