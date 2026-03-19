@@ -74,7 +74,7 @@ This is needed for ~Counsel-M-x~ to remember history.
   (corfu-auto t)                ;; Enable auto-completion
   (corfu-cycle t)               ;; Allows cycling through suggestions
   (corfu-auto-prefix 2)         ;; Start completion after 2 characters
-  (corfu-auto-delay 0.1)        ;; Quick popup display
+  (corfu-auto-delay 0.3)        ;; Delay before popup display
   :init
   (global-corfu-mode))
 #+end_src
