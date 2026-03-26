@@ -93,4 +93,4 @@
   (org-babel-load-file "~/.emacs.d/keybindings_meow.org"))
 
 (when (string-match "turing" (downcase (system-name)))
-  (org-babel-load-file "~/.emacs.d/keybindings_bray.org"))
+  (org-babel-load-file "~/.emacs.d/keybindings_meow.org"))

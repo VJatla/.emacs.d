@@ -64,7 +64,7 @@
       )
 
     (when (string-match "turing" (downcase (system-name)))
-      (load-theme 'solarized t))
+      (load-theme 'spacemacs-dark t))
 
     (when (string-match "HNL-PRD-APP03.VTCRI.LOCAL" (downcase (system-name)))
       (load-theme 'spacemacs-dark t))
