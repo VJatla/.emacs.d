@@ -144,7 +144,8 @@ Do not truncate lines in programming mode
 ** vterm
 
 #+begin_src emacs-lisp
-  (when (display-graphic-p)
+  (when (or (display-graphic-p)
+            (string= (system-name) "VME-PRD-HNL01N.vtcri.local"))
     (use-package vterm))
 #+end_src
 
