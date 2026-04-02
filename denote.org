@@ -7,9 +7,10 @@
     (require 'denote)
 
     ;; Remember to check the doc strings of those variables.
+    (setq denote-directory (expand-file-name "~/Dropbox/notes/org/"))
     (when (string= (system-name) "VT000504741")
       (setq denote-directory (expand-file-name "~/Dropbox/FBRI/notes/"))
-        (setq denote-file-type 'markdown-yaml))
+      (setq denote-file-type 'markdown-yaml))
 
     (setq denote-infer-keywords t)
     (setq denote-sort-keywords t)
