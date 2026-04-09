@@ -21,4 +21,6 @@
 ** Start flyspell in org mode
 #+begin_src emacs-lisp
   (add-hook 'org-mode-hook 'turn-on-flyspell)
+  ;; Disable corfu auto-popup in org-mode to prevent ispell blocking Emacs
+  (add-hook 'org-mode-hook (lambda () (setq-local corfu-auto nil)))
 #+end_src
