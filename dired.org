@@ -34,6 +34,7 @@ Install directly from GitHub using straight.el:
 #+end_src
 
 ** Dired subtree
+
 #+begin_src emacs-lisp
     (use-package dired-subtree
       :ensure t
@@ -79,6 +80,10 @@ Install directly from GitHub using straight.el:
 
 #+end_src
 
+** Copy to other window
+#+begin_src emacs-lisp
+(setq dired-dwim-target t)
+#+end_src
 * Looks
 ** Disable truncate lines
 #+begin_src emacs-lisp
