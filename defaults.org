@@ -77,6 +77,8 @@
 
     (when (string= (system-name) "VT000447010")
       (load-theme 'spacemacs-light t))
+    (when (string= (system-name) "VT000446990.vtcri.local")
+      (load-theme 'spacemacs-light t))
 
     (when (string= (system-name) "VT000504741")
       (load-theme 'spacemacs-light t))
