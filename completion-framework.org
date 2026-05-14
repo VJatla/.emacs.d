@@ -64,50 +64,18 @@ This is needed for ~Counsel-M-x~ to remember history.
   (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
   (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
 #+end_src
+
 * In buffer auto completion
-** corfu: COmpletion in Region FUnction
+** company-mode
 
 #+begin_src emacs-lisp
-  (use-package corfu
-  :ensure t
-  :custom
-  (corfu-auto t)                ;; Enable auto-completion
-  (corfu-cycle t)               ;; Allows cycling through suggestions
-  (corfu-auto-prefix 2)         ;; Start completion after 2 characters
-  (corfu-auto-delay 0.3)        ;; Delay before popup display
-  :init
-  (global-corfu-mode))
-#+end_src
-
-** CAPE
-
-#+begin_src emacs-lisp
-  (use-package cape
+  (use-package company
     :ensure t
+    :custom
+    (company-minimum-prefix-length 2)
+    (company-idle-delay 0.3)
+    (company-tooltip-align-annotations t)
     :init
-    (add-to-list 'completion-at-point-functions #'cape-file))
-#+end_src
-
-** Making corfu work in terminal
-
-#+begin_src emacs-lisp
-  (use-package corfu-terminal
-    :ensure t
-    :config
-    (unless (display-graphic-p)
-      (corfu-terminal-mode +1)))
-#+end_src
-
-** Minibuffer completion
-
-#+begin_src emacs-lisp
-  ;; Enable Corfu in minibuffer (for better completion everywhere)
-  (defun corfu-enable-in-minibuffer ()
-    "Enable Corfu in the minibuffer for commands like M-:"
-    (when (local-variable-p 'completion-at-point-functions)
-      (setq-local corfu-auto nil) ;; No auto-completion in minibuffer
-      (corfu-mode 1)))
-
-  (add-hook 'minibuffer-setup-hook #'corfu-enable-in-minibuffer)
+    (global-company-mode))
 #+end_src
 

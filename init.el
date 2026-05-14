@@ -24,8 +24,9 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-;; Tell straight.el to use built-in project.el instead of installing it
+;; Tell straight.el to use built-in versions instead of installing them
 (straight-use-package '(project :type built-in))
+(straight-use-package '(xref :type built-in))
 
 ;; Install use-package via straight
 (straight-use-package 'use-package)

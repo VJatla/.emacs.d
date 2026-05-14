@@ -93,6 +93,7 @@
    '("y" . meow-save)
    '("Y" . meow-sync-grab)
    '("z" . meow-pop-selection)
+   '("S" . surround-insert)
    '("'" . repeat)
    '("<escape>" . ignore)))
 #+end_src
