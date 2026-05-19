@@ -81,7 +81,7 @@
       (load-theme 'spacemacs-light t))
 
     (when (string= (system-name) "VT000504741")
-      (load-theme 'spacemacs-light t))
+      (load-theme 'spacemacs-dark t))
 
 
 #+end_src
