@@ -80,7 +80,7 @@
   (org-babel-load-file "~/.emacs.d/agenda.org")
   (org-babel-load-file "~/Dropbox/keybindings_meow.org"))
 
-(when (string= (system-name) "yatra")
+(when (and (string= (system-name) "vihara") (string= (user-login-name) "vjatla"))
   (org-babel-load-file "~/.emacs.d/denote.org")
   (org-babel-load-file "~/.emacs.d/agenda.org")
   (org-babel-load-file "~/Dropbox/keybindings_meow.org"))
