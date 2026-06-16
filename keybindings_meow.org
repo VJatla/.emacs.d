@@ -2,37 +2,37 @@
 
 * Installation
 #+begin_src emacs-lisp
-  (use-package meow :ensure t)
+  (use-package meow)
 #+end_src
 
 * Default configuration
 
 #+begin_src emacs-lisp
   (defun meow-setup ()
-  (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
-  (meow-motion-define-key
-   '("j" . meow-next)
-   '("k" . meow-prev)
-   '("<escape>" . ignore))
-  (meow-leader-define-key
-   ;; Use SPC (0-9) for digit arguments.
-   '("1" . meow-digit-argument)
-   '("2" . meow-digit-argument)
-   '("3" . meow-digit-argument)
-   '("4" . meow-digit-argument)
-   '("5" . meow-digit-argument)
-   '("6" . meow-digit-argument)
-   '("7" . meow-digit-argument)
-   '("8" . meow-digit-argument)
-   '("9" . meow-digit-argument)
-   '("0" . meow-digit-argument)
-   '("/" . meow-keypad-describe-key)
-   '("?" . meow-cheatsheet)
-   ;; Open commands (SPC o)
-   '("o f" . counsel-find-file)
-   '("o d" . counsel-bookmarked-directory)
-   '("o b" . counsel-bookmark)
-   '("o r" . counsel-recentf))
+    (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
+    (meow-motion-define-key
+     '("j" . meow-next)
+     '("k" . meow-prev)
+     '("<escape>" . ignore))
+    (meow-leader-define-key
+     ;; Use SPC (0-9) for digit arguments.
+     '("1" . meow-digit-argument)
+     '("2" . meow-digit-argument)
+     '("3" . meow-digit-argument)
+     '("4" . meow-digit-argument)
+     '("5" . meow-digit-argument)
+     '("6" . meow-digit-argument)
+     '("7" . meow-digit-argument)
+     '("8" . meow-digit-argument)
+     '("9" . meow-digit-argument)
+     '("0" . meow-digit-argument)
+     '("/" . meow-keypad-describe-key)
+     '("?" . meow-cheatsheet)
+     ;; Open commands (SPC o)
+     '("o f" . counsel-find-file)
+     '("o d" . counsel-bookmarked-directory)
+     '("o b" . counsel-bookmark)
+     '("o r" . counsel-recentf))
   (meow-normal-define-key
    '("0" . meow-expand-0)
    '("9" . meow-expand-9)
@@ -86,8 +86,8 @@
    '("u" . meow-undo)
    '("U" . meow-undo-in-selection)
    '("v" . meow-visit)
-   '("w" . meow-mark-word)
-   '("W" . meow-mark-symbol)
+   '("w" . meow-mark-symbol)
+   '("W" . meow-mark-word)
    '("x" . meow-line)
    '("X" . meow-goto-line)
    '("y" . meow-save)
@@ -101,5 +101,7 @@
 #+begin_src emacs-lisp
   (require 'meow)
   (meow-setup)
+  (setq meow-use-clipboard t)
+  (setq meow-expand-hint-counts '((word . 0) (line . 5) (block . 5) (find . 5) (till . 5) (symbol . 5)))
   (meow-global-mode 1)
 #+end_src
