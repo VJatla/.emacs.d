@@ -159,8 +159,9 @@ Do not truncate lines in programming mode
 ** clipetty
 
 #+begin_src emacs-lisp
-    (use-package clipetty
-      :hook (after-init . global-clipetty-mode))
+  (use-package clipetty
+    :hook (after-init . global-clipetty-mode))
+  (setq clipetty-tmux-ssh-attach nil)
 #+end_src
 
 ** Load file on change
