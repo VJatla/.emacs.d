@@ -8,13 +8,13 @@
 * Previous level heading
 #+begin_src emacs-lisp
   ;; Display previous level headings for a task
-  (setq org-agenda-prefix-format '((agenda . " %i %-12:c%?-12t% s")
+  (setq org-agenda-prefix-format '((agenda . " %i %-20:c %-14s")
 				   (timeline . "  % s")
 				   (todo .
-					 " %i %-12:c %(concat \"[ \"(org-format-outline-path (org-get-outline-path)) \" ]\") ")
+					 " %i %-20:c %(concat \"[ \"(org-format-outline-path (org-get-outline-path)) \" ]\") ")
 				   (tags .
-					 " %i %-12:c %(concat \"[ \"(org-format-outline-path (org-get-outline-path)) \" ]\") ")
-				   (search . " %i %-12:c"))
+					 " %i %-20:c %(concat \"[ \"(org-format-outline-path (org-get-outline-path)) \" ]\") ")
+				   (search . " %i %-20:c"))
 	)
 #+end_src
 

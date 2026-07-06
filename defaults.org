@@ -154,6 +154,7 @@ Do not truncate lines in programming mode
   (when (or (display-graphic-p)
             (string= (system-name) "VME-PRD-HNL01N.vtcri.local"))
     (use-package vterm))
+  (add-hook 'vterm-mode-hook (lambda () (hl-line-mode -1)))
 #+end_src
 
 ** clipetty
