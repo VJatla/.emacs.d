@@ -165,6 +165,14 @@ Do not truncate lines in programming mode
   (setq clipetty-tmux-ssh-attach nil)
 #+end_src
 
+** tmux-pane
+#+begin_src emacs-lisp
+  (use-package tmux-pane
+    :ensure t
+    )
+#+end_src
+
+
 ** Load file on change
 #+begin_src emacs-lisp
   (global-auto-revert-mode 1)
