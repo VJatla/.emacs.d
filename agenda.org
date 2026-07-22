@@ -33,29 +33,6 @@
 #+begin_src emacs-lisp
   (setq org-log-into-drawer t)
 #+end_src
-* Archiving
-#+begin_src emacs-lisp
-  ;; When archiving, include parent tasks to preserve the tree structure
-  (setq org-archive-location "%s_archive::* From %s")
-  (defun fuco1/org-archive-subtree-hierarchical ()
-  "Archive the current subtree to the archive file, preserving the hierarchy."
-  (interactive)
-  (let ((filepath (org-archive-subtree-default))
-        (olpath (org-get-outline-path)))
-    (save-window-excursion
-      (find-file filepath)
-      (widen)
-      (goto-char (point-min))
-      (dolist (heading olpath)
-        (if (re-search-forward (format org-complex-heading-regexp-format (regexp-quote heading)) nil t)
-            (org-narrow-to-subtree)
-          (org-end-of-subtree t)
-          (insert (make-string (1+ (org-current-level)) ?*) " " heading "\n")
-          (org-narrow-to-subtree)))
-      (org-paste-subtree 1)
-      (save-buffer))))
-
-#+end_src
 * Keybindings
 #+begin_src emacs-lisp
   (defun my/open-agenda ()

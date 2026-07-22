@@ -1,8 +1,3 @@
-* Org modern
-#+begin_src emacs-lisp
-  (use-package org-modern :ensure t)
-  (with-eval-after-load 'org (global-org-modern-mode))
-#+end_src
 * Configuration
 ** babel: Executing programs in org
   #+begin_src emacs-lisp
