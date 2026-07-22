@@ -77,7 +77,7 @@
 
   (when (string= (system-name) "VT000447010")
     (load-theme 'spacemacs-light t))
-  (when (string= (system-name) "VT000446990.vtcri.local")
+  (when (string-match-p "vt000446990" (downcase (system-name)))
     (load-theme 'spacemacs-light t))
 
   (when (string= (system-name) "VT000504741")

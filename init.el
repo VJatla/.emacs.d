@@ -70,7 +70,7 @@
   (org-babel-load-file "~/.emacs.d/agenda.org")
   (org-babel-load-file "~/Dropbox/keybindings_meow.org"))
 
-(when (string= (system-name) "VT000446990.vtcri.local")
+(when (string-match-p "vt000446990" (downcase (system-name)))
   (org-babel-load-file "~/.emacs.d/denote.org")
   (org-babel-load-file "~/.emacs.d/agenda.org")
   (org-babel-load-file "~/Dropbox/keybindings_meow.org"))
