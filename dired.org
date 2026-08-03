@@ -53,6 +53,17 @@ Install directly from GitHub using straight.el:
 	(kill-new path)
 	(message "Copied full path: %s" path)))
 
+    (defun my/dired-copy-to-rihome ()
+      "Copy the file or directory at point to ~/rihome/."
+      (interactive)
+      (let* ((source (dired-get-filename))
+             (target-dir (expand-file-name "~/rihome/"))
+             (target (expand-file-name (file-name-nondirectory source) target-dir)))
+        (if (file-directory-p source)
+            (copy-directory source target nil t t)
+          (copy-file source target t))
+        (message "Copied %s to %s" (file-name-nondirectory source) target-dir)))
+
     (with-eval-after-load 'dired
       (define-key dired-mode-map (kbd "SPC") nil)
 
@@ -73,6 +84,15 @@ Install directly from GitHub using straight.el:
 
       ;; Reload init file
       (define-key dired-mode-map (kbd "SPC .") 'reload-init-file)
+
+      ;; Copy commands: C for compress, c c for copy, c r for copy to rihome
+      (define-key dired-mode-map (kbd "c") nil)  ; Unbind c first to make it a prefix
+      (define-key dired-mode-map (kbd "C") 'dired-do-compress-to)
+      (define-key dired-mode-map (kbd "c c") 'dired-do-copy)
+      (define-key dired-mode-map (kbd "c r") 'my/dired-copy-to-rihome)
+
+      ;; Navigation: b for back (up directory)
+      (define-key dired-mode-map (kbd "b") 'dired-up-directory)
 
       (define-key dired-mode-map (kbd "n") #'dired-copy-filename-as-kill)
       (define-key dired-mode-map (kbd "p") #'my/dired-copy-full-path)
