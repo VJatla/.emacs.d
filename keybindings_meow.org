@@ -1,10 +1,8 @@
 #+Title: Meow mode
-
 * Installation
 #+begin_src emacs-lisp
   (use-package meow)
 #+end_src
-
 * Default configuration
 
 #+begin_src emacs-lisp
@@ -104,12 +102,4 @@
   (setq meow-use-clipboard t)
   (setq meow-expand-hint-counts '((word . 0) (line . 5) (block . 5) (find . 5) (till . 5) (symbol . 5)))
   (meow-global-mode 1)
-#+end_src
-* Window navigation with Alt+arrows
-#+begin_src emacs-lisp
-  ;; Navigate between windows using Alt+arrow keys
-  (global-set-key (kbd "M-<left>") 'windmove-left)
-  (global-set-key (kbd "M-<right>") 'windmove-right)
-  (global-set-key (kbd "M-<up>") 'windmove-up)
-  (global-set-key (kbd "M-<down>") 'windmove-down)
 #+end_src

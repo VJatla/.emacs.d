@@ -68,27 +68,27 @@
 (when (string= (system-name) "VT000447010")
   (org-babel-load-file "~/.emacs.d/denote.org")
   (org-babel-load-file "~/.emacs.d/agenda.org")
-  (org-babel-load-file "~/Dropbox/keybindings_meow.org"))
+  (org-babel-load-file "~/.emacs.d/keybindings_meow.org"))
 
 (when (string-match-p "vt000446990" (downcase (system-name)))
   (org-babel-load-file "~/.emacs.d/denote.org")
   (org-babel-load-file "~/.emacs.d/agenda.org")
-  (org-babel-load-file "~/Dropbox/keybindings_meow.org"))
+  (org-babel-load-file "~/.emacs.d/keybindings_meow.org"))
 
 (when (string= (system-name) "VT000504741")
   (org-babel-load-file "~/.emacs.d/denote.org")
   (org-babel-load-file "~/.emacs.d/agenda.org")
-  (org-babel-load-file "~/Dropbox/keybindings_meow.org"))
+  (org-babel-load-file "~/.emacs.d/keybindings_meow.org"))
 
 (when (and (string= (system-name) "vihara") (string= (user-login-name) "vjatla"))
   (org-babel-load-file "~/.emacs.d/denote.org")
   (org-babel-load-file "~/.emacs.d/agenda.org")
-  (org-babel-load-file "~/Dropbox/keybindings_meow.org"))
+  (org-babel-load-file "~/.emacs.d/keybindings_meow.org"))
 
 (when (string= (system-name) "vmi2637211")
   (org-babel-load-file "~/.emacs.d/denote.org")
   (org-babel-load-file "~/.emacs.d/agenda.org")
-  (org-babel-load-file "~/Dropbox/keybindings_meow.org"))
+  (org-babel-load-file "~/.emacs.d/keybindings_meow.org"))
 
 (when (string= (system-name) "VME-PRD-HNL01N.vtcri.local")
   (org-babel-load-file "~/.emacs.d/keybindings_meow.org"))

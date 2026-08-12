@@ -81,7 +81,7 @@
     (load-theme 'spacemacs-light t))
 
   (when (string= (system-name) "VT000504741")
-    (load-theme 'spacemacs-dark t))
+    (load-theme 'leuven t))
 
   (when (and (string= (system-name) "vihara") (string= (user-login-name) "vjatla"))
     (load-theme 'sanityinc-tomorrow-eighties t))
