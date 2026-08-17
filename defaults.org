@@ -83,8 +83,8 @@
   (when (string= (system-name) "VT000504741")
     (load-theme 'leuven t))
 
-  (when (and (string= (system-name) "vihara") (string= (user-login-name) "vjatla"))
-    (load-theme 'sanityinc-tomorrow-eighties t))
+  (when (and (string= (system-name) "swechha") (string= (user-login-name) "vjatla"))
+    (load-theme 'leuven t))
 
 
 

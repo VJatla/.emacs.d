@@ -8,7 +8,7 @@
 
   ;; Remember to check the doc strings of those variables.
   (setq denote-directory (expand-file-name "~/Dropbox/notes/org/"))
-  (when (and (string= (system-name) "vihara") (string= (user-login-name) "vjatla"))
+  (when (and (string= (system-name) "swechha") (string= (user-login-name) "vjatla"))
     (setq denote-directory (expand-file-name "~/Dropbox/FBRI/notes/"))
     (setq denote-file-type 'markdown-yaml))
   (when (and (string= (system-name) "VT000504741") (string= (user-login-name) "vjatla"))
