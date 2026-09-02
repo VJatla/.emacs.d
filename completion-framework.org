@@ -42,8 +42,8 @@ This is needed for ~Counsel-M-x~ to remember history.
   (ivy-mode)
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t)
-  ;; Filter out internal buffers (starting with * or space)
-  (setq ivy-ignore-buffers '("\\` " "\\`\\*"))
+  ;; Show all buffers including temporary buffers (starting with * or space)
+  (setq ivy-ignore-buffers nil)
   ;; enable this if you want `swiper' to use it
   ;; (setq search-default-mode #'char-fold-to-regexp)
   (global-set-key "\C-s" 'swiper)

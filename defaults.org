@@ -162,7 +162,7 @@ Do not truncate lines in programming mode
 #+begin_src emacs-lisp
   (use-package clipetty
     :hook (after-init . global-clipetty-mode))
-  (setq clipetty-tmux-ssh-attach nil)
+  (setq clipetty-tmux-ssh-attach 'screen)
 #+end_src
 
 ** tmux-pane

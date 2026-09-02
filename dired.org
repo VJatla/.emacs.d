@@ -33,6 +33,27 @@ Install directly from GitHub using straight.el:
                 ("/" . dired-narrow)))
 #+end_src
 
+** Quick preview and close with q
+#+begin_src emacs-lisp
+  ;; Split vertically when opening files in dired with 'o'
+  (setq split-height-threshold nil)
+  (setq split-width-threshold 0)
+
+  (defun my/dired-preview-close-window ()
+    "Close the current buffer and window, useful for files opened from dired with 'o'."
+    (interactive)
+    (kill-buffer)
+    (delete-window))
+
+  (defun my/setup-preview-close-keybinding ()
+    "Set up 'q' to close buffer and window in files opened from dired."
+    (local-set-key (kbd "q") #'my/dired-preview-close-window))
+
+  ;; Apply to common file modes
+  (add-hook 'text-mode-hook #'my/setup-preview-close-keybinding)
+  (add-hook 'prog-mode-hook #'my/setup-preview-close-keybinding)
+#+end_src
+
 ** Dired subtree
 
 #+begin_src emacs-lisp

@@ -1,8 +1,14 @@
 * CSV mode
 
 #+begin_src emacs-lisp
-    (use-package csv-mode
-      :ensure t)
+  (use-package csv-mode
+    :ensure t
+  :hook (csv-mode . (lambda ()
+		      ;; Disable line truncation so long entries wrap
+		      (setq-local truncate-lines nil)
+		      ;; Ensure alignment mode (which hides/truncates) is off
+		      (when (bound-and-true-p csv-align-mode)
+			(csv-align-mode -1)))))
 #+end_src
 
 #+RESULTS:
