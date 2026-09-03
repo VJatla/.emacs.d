@@ -27,19 +27,6 @@
     (menu-bar-mode -1))
 #+end_src
 
-** Dashboard
-#+begin_src emacs-lisp
-  ;; use-package with package.el:
-  (use-package dashboard
-    :ensure t
-    :config
-    (dashboard-setup-startup-hook)
-    (define-key dashboard-mode-map (kbd "SPC o f") #'counsel-find-file)
-    (define-key dashboard-mode-map (kbd "SPC o d") #'counsel-bookmarked-directory)
-    (define-key dashboard-mode-map (kbd "SPC o b") #'counsel-bookmark)
-    (define-key dashboard-mode-map (kbd "SPC o r") #'counsel-recentf))
-#+end_src
-
 ** Theme and Font
 #+begin_src emacs-lisp
   (use-package zenburn-theme)
@@ -96,7 +83,7 @@
 ** Font
 #+begin_src emacs-lisp
   (add-to-list 'default-frame-alist
-		 '(font . "JetBrains Mono-16"))
+		 '(font . "JetBrains Mono-14"))
 
   (when (and (string= (system-name) "vihara") (string= (user-login-name) "vjatla"))
   (add-to-list 'default-frame-alist
@@ -164,7 +151,7 @@ Do not truncate lines in programming mode
 #+begin_src emacs-lisp
   (use-package clipetty
     :hook (after-init . global-clipetty-mode))
-  (setq clipetty-tmux-ssh-attach nil)
+  (setq clipetty-tmux-ssh-attach 'screen)
 #+end_src
 
 ** tmux-pane

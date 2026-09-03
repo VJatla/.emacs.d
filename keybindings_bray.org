@@ -184,7 +184,3 @@
 
 
 * Major modes keymap
-** Dashboard
-#+begin_src emacs-lisp
-  (add-hook 'dashboard-mode-hook #'bray-mode)
-#+end_src
