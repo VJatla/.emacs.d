@@ -58,7 +58,8 @@
 (org-babel-load-file "~/.emacs.d/snippets.org")
 (org-babel-load-file "~/.emacs.d/latex.org")
 (org-babel-load-file "~/.emacs.d/fun.org")
-(org-babel-load-file "~/.emacs.d/gptel.org")
+(org-babel-load-file "~/.emacs.d/ai.org")
+
 ;;(org-babel-load-file "~/.emacs.d/llms.org")
 ;;(org-babel-load-file "~/Dropbox/keybindings.org")
 

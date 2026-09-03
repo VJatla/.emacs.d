@@ -1,0 +1,24 @@
+* Claude-code ide
+** Required packages
+- vterm: installed in ~defaults.org~
+- eat: terminal too, I am installing here
+- ghostel: Ghostel is a terminal emulator for Emacs powered by
+  libghostty-vt, the VT engine behind the Ghostty terminal.
+*** eat
+#+begin_src emacs-lisp
+  (use-package eat :ensure t)
+#+end_src
+*** ghostel
+#+begin_src emacs-lisp
+  (use-package ghostel
+  :ensure t)
+#+end_src
+** Installation
+#+begin_src emacs-lisp
+  (use-package claude-code-ide
+    :straight (:type git :host github :repo "manzaltu/claude-code-ide.el")
+    :bind ("C-c C-'" . claude-code-ide-menu) ; Set your favorite keybinding
+    :config
+    (setq claude-code-ide-cli-path (expand-file-name "~/.local/bin/claude"))
+    (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools  
+#+end_src
