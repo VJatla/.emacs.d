@@ -85,6 +85,8 @@
 
   (when (and (string= (system-name) "swechha") (string= (user-login-name) "vjatla"))
     (load-theme 'leuven t))
+  (when (and (string= (system-name) "swechha") (string= (user-login-name) "vj"))
+    (load-theme 'zenburn t))
 
 
 

@@ -85,6 +85,11 @@
   (org-babel-load-file "~/.emacs.d/agenda.org")
   (org-babel-load-file "~/.emacs.d/keybindings_meow.org"))
 
+(when (and (string= (system-name) "swechha") (string= (user-login-name) "vj"))
+  (org-babel-load-file "~/.emacs.d/denote.org")
+  (org-babel-load-file "~/.emacs.d/agenda.org")
+  (org-babel-load-file "~/.emacs.d/keybindings_meow.org"))
+
 (when (string= (system-name) "vmi2637211")
   (org-babel-load-file "~/.emacs.d/denote.org")
   (org-babel-load-file "~/.emacs.d/agenda.org")
