@@ -55,8 +55,8 @@
    '("c" . meow-change)
    '("d" . meow-delete)
    '("D" . meow-backward-delete)
-   '("e" . meow-next-word)
-   '("E" . meow-next-symbol)
+   '("E" . meow-next-word)
+   '("e" . meow-next-symbol)
    '("f" . meow-find)
    '("g" . meow-cancel-selection)
    '("G" . meow-grab)
@@ -94,6 +94,13 @@
    '("S" . surround-insert)
    '("'" . repeat)
    '("<escape>" . ignore)))
+#+end_src
+* Mode specific
+** Markdown mode
+#+begin_src emacs-lisp
+  (with-eval-after-load 'markdown-mode
+  (modify-syntax-entry ?` "\"" markdown-mode-syntax-table)
+  (modify-syntax-entry ?~ "\"" markdown-mode-syntax-table))
 #+end_src
 * Start meow
 #+begin_src emacs-lisp
