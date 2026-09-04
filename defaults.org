@@ -177,6 +177,10 @@ Do not truncate lines in programming mode
   (global-set-key (kbd "C-M-<down>")  (lambda () (interactive) (shrink-window 5)))
   (global-set-key (kbd "C-M-<up>")    (lambda () (interactive) (enlarge-window 5)))
 #+end_src
+** Easy window navigation
+#+begin_src emacs-lisp
+  (windmove-default-keybindings 'meta)
+#+end_src
 * Dependencies
 
 The following packages are needed, but I am not sure their intended
