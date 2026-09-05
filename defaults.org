@@ -170,13 +170,6 @@ Do not truncate lines in programming mode
 #+begin_src emacs-lisp
 (electric-pair-mode 1)
 #+end_src
-** Easy window size
-#+begin_src emacs-lisp
-  (global-set-key (kbd "C-M-<left>")  (lambda () (interactive) (shrink-window-horizontally 5)))
-  (global-set-key (kbd "C-M-<right>") (lambda () (interactive) (enlarge-window-horizontally 5)))
-  (global-set-key (kbd "C-M-<down>")  (lambda () (interactive) (shrink-window 5)))
-  (global-set-key (kbd "C-M-<up>")    (lambda () (interactive) (enlarge-window 5)))
-#+end_src
 ** Easy window navigation
 #+begin_src emacs-lisp
   ;; Mirror meow's jklh movement keys for window navigation (h=left, j=down, k=up, l=right).
@@ -184,6 +177,41 @@ Do not truncate lines in programming mode
   (global-set-key (kbd "M-j") 'windmove-down)
   (global-set-key (kbd "M-k") 'windmove-up)
   (global-set-key (kbd "M-l") 'windmove-right)
+
+  (defun my-move-border-right ()
+  "Move the vertical window boundary to the right."
+  (interactive)
+  (if (window-in-direction 'right)
+      (enlarge-window-horizontally 2)
+    (shrink-window-horizontally 2)))
+
+(defun my-move-border-left ()
+  "Move the vertical window boundary to the left."
+  (interactive)
+  (if (window-in-direction 'right)
+      (shrink-window-horizontally 2)
+    (enlarge-window-horizontally 2)))
+
+(defun my-move-border-down ()
+  "Move the horizontal window boundary down."
+  (interactive)
+  (if (window-in-direction 'below)
+      (enlarge-window 2)
+    (shrink-window 2)))
+
+(defun my-move-border-up ()
+  "Move the horizontal window boundary up."
+  (interactive)
+  (if (window-in-direction 'below)
+      (shrink-window 2)
+    (enlarge-window 2)))
+
+;; Bind globally so it works across Meow states
+(global-set-key (kbd "M-H") #'my-move-border-left)  ; Alt + Shift + h
+(global-set-key (kbd "M-J") #'my-move-border-down)  ; Alt + Shift + j
+(global-set-key (kbd "M-K") #'my-move-border-up)    ; Alt + Shift + k
+(global-set-key (kbd "M-L") #'my-move-border-right) ; Alt + Shift + l
+
 #+end_src
 * Dependencies
 
