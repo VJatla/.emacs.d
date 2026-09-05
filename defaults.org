@@ -179,7 +179,6 @@ Do not truncate lines in programming mode
 #+end_src
 ** Easy window navigation
 #+begin_src emacs-lisp
-  (windmove-default-keybindings 'meta)
   ;; Mirror meow's jklh movement keys for window navigation (h=left, j=down, k=up, l=right).
   (global-set-key (kbd "M-h") 'windmove-left)
   (global-set-key (kbd "M-j") 'windmove-down)
