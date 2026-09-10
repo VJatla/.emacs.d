@@ -113,6 +113,18 @@ Do not truncate lines in programming mode
 : t
 
 * Feel
+** Perspective
+#+begin_src emacs-lisp
+  (use-package perspective
+    :ensure t
+    :bind (("C-x b" . persp-switch-to-buffer)     ; Use perspective's buffer switching
+	   ("C-x k" . persp-kill-buffer))         ; Restrict killing to current perspective
+    :custom
+    (persp-mode-prefix-key (kbd "C-x x"))         ; Changes prefix from C-z to C-x x
+    :init
+    (persp-mode 1))
+#+end_src
+
 ** surround pairs
 #+begin_src emacs-lisp
   (use-package surround :ensure t)
