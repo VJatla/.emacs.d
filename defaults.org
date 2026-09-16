@@ -101,9 +101,9 @@
 #+end_src
 
 ** Truncate lines
-Do not truncate lines in programming mode
+Do not truncate lines in any buffer by default
 #+begin_src emacs-lisp
-  (add-hook 'prog-mode-hook (lambda () (setq truncate-lines nil)))
+  (setq-default truncate-lines nil)
 #+end_src
 ** Highlight line by default
 #+begin_src emacs-lisp
@@ -120,7 +120,7 @@ Do not truncate lines in programming mode
   (use-package perspective
     :ensure t
     :bind (("C-x b" . persp-switch-to-buffer)     ; Use perspective's buffer switching
-	   ("C-x k" . persp-kill-buffer))         ; Restrict killing to current perspective
+	   ("C-x k" . persp-kill-buffer*))        ; Restrict killing to current perspective
     :custom
     (persp-mode-prefix-key (kbd "C-x x"))         ; Changes prefix from C-z to C-x x
     :init
@@ -191,6 +191,15 @@ Do not truncate lines in programming mode
   (global-set-key (kbd "M-j") 'windmove-down)
   (global-set-key (kbd "M-k") 'windmove-up)
   (global-set-key (kbd "M-l") 'windmove-right)
+
+  ;; vterm-mode-map binds most keys to send input to the terminal, which
+  ;; shadows the global M-h/j/k/l windmove bindings above. Re-bind them
+  ;; explicitly so window navigation works while inside a vterm buffer.
+  (with-eval-after-load 'vterm
+    (define-key vterm-mode-map (kbd "M-h") 'windmove-left)
+    (define-key vterm-mode-map (kbd "M-j") 'windmove-down)
+    (define-key vterm-mode-map (kbd "M-k") 'windmove-up)
+    (define-key vterm-mode-map (kbd "M-l") 'windmove-right))
 
   (defun my-move-border-right ()
   "Move the vertical window boundary to the right."
