@@ -50,13 +50,13 @@
     :config
     ;; Update background mode when new frames are created
     (add-hook 'after-make-frame-functions
-              (lambda (frame)
-                (solarized-update-background-mode
-                 (if (display-graphic-p frame) 'dark 'light)
-                 (list frame)))))
+	      (lambda (frame)
+		(solarized-update-background-mode
+		 (if (display-graphic-p frame) 'dark 'light)
+		 (list frame)))))
 
   (when (string= (system-name) "VME-PRD-HNL01N.vtcri.local")
-    (load-theme 'zenburn t)
+    (load-theme 'dracula t)
     )
 
   (when (string-match "turing" (downcase (system-name)))
