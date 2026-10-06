@@ -33,7 +33,16 @@
   (use-package color-theme-sanityinc-tomorrow)
   (use-package leuven-theme)
   (use-package spacemacs-theme :ensure t)
-  (use-package nord-theme)
+  ;; Both nord-theme and dracula-theme live in a GitHub repo named "emacs"
+  ;; (nordtheme/emacs and dracula/emacs), so straight.el would try to clone
+  ;; both into straight/repos/emacs and silently reuse whichever landed first.
+  ;; Pin distinct :local-repo names to keep them apart.
+  (use-package nord-theme
+    :straight (nord-theme :host github :repo "nordtheme/emacs"
+                          :local-repo "nord-emacs"))
+  (use-package dracula-theme
+    :straight (dracula-theme :host github :repo "dracula/emacs"
+                             :local-repo "dracula-emacs"))
 
   ;; Solarized theme that works in terminal
   (use-package solarized-theme
@@ -68,7 +77,7 @@
     (load-theme 'spacemacs-light t))
 
   (when (string= (system-name) "VT000504741")
-    (load-theme 'leuven t))
+    (load-theme 'spacemacs-dark t))
 
   (when (and (string= (system-name) "swechha") (string= (user-login-name) "vjatla"))
     (load-theme 'leuven t))
