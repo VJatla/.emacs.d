@@ -1,3 +1,4 @@
+;;; init.el --- Emacs configuration -*- lexical-binding: t; -*-
 
 ;; Automatically generated customization goes to another file
 
@@ -40,6 +41,17 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
+
+;; Add a lexical-binding cookie to every .el file tangled from the .org configs
+(add-hook 'org-babel-post-tangle-hook
+          (lambda ()
+            (when (and buffer-file-name
+                       (string-suffix-p ".el" buffer-file-name))
+              (save-excursion
+                (goto-char (point-min))
+                (unless (looking-at-p ".*-\\*-.*lexical-binding")
+                  (insert ";;; -*- lexical-binding: t; -*-\n")
+                  (save-buffer))))))
 
 ;; Nice defaults
 (org-babel-load-file "~/.emacs.d/defaults.org")

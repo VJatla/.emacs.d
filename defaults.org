@@ -39,6 +39,10 @@
   ;; (nordtheme/emacs and dracula/emacs), so straight.el would try to clone
   ;; both into straight/repos/emacs and silently reuse whichever landed first.
   ;; Pin distinct :local-repo names to keep them apart.
+  ;; nord-theme ships without a lexical-binding cookie; hide that one warning.
+  (add-to-list 'warning-suppress-log-types
+	       '(files missing-lexbind-cookie
+		       "~/.emacs.d/straight/build/nord-theme/nord-theme.el"))
   (use-package nord-theme
     :straight (nord-theme :host github :repo "nordtheme/emacs"
 			  :local-repo "nord-emacs"))
