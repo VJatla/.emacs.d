@@ -32,6 +32,11 @@
 ;; Install use-package via straight
 (straight-use-package 'use-package)
 
+;; Emacs 30 ships a stub `compat' that shadows the real package; load
+;; straight's compat first so newer packages (e.g. magit's `set-local') work.
+(straight-use-package 'compat)
+(require 'compat)
+
 ;; Configure use-package to use straight.el by default
 (eval-and-compile
   (setq straight-use-package-by-default t
@@ -93,6 +98,11 @@
   (org-babel-load-file "~/.emacs.d/agenda.org")
   (org-babel-load-file "~/.emacs.d/keybindings_meow.org"))
 
+  (when (and (string= (system-name) "VT000512003") (string= (user-login-name) "vjatla@vtcri.local"))
+  (org-babel-load-file "~/.emacs.d/denote.org")
+  (org-babel-load-file "~/.emacs.d/agenda.org")
+  (org-babel-load-file "~/.emacs.d/keybindings_meow.org"))
+    
 (when (and (string= (system-name) "swechha") (string= (user-login-name) "vjatla"))
   (org-babel-load-file "~/.emacs.d/denote.org")
   (org-babel-load-file "~/.emacs.d/agenda.org")
