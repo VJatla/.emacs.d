@@ -1,3 +1,4 @@
+#+PROPERTY: header-args :lexical t
 * Claude-code ide
 ** Required packages
 - vterm: installed in ~defaults.org~

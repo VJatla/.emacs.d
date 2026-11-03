@@ -1,3 +1,4 @@
+#+PROPERTY: header-args :lexical t
 * AUCTEX
   #+begin_src emacs-lisp
     (use-package auctex

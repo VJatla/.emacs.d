@@ -1,4 +1,5 @@
 #+Title: Meow mode
+#+PROPERTY: header-args :lexical t
 * Installation
 #+begin_src emacs-lisp
   (use-package meow)

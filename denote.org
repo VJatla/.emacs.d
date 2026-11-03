@@ -1,3 +1,4 @@
+#+PROPERTY: header-args :lexical t
 * Configuration
 #+begin_src emacs-lisp
   (use-package denote

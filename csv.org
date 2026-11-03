@@ -1,3 +1,4 @@
+#+PROPERTY: header-args :lexical t
 * CSV mode
 
 #+begin_src emacs-lisp
