@@ -35,20 +35,9 @@
   (use-package leuven-theme)
   (use-package spacemacs-theme :ensure t)
   (use-package jetbrains-darcula-theme)
-  ;; Both nord-theme and dracula-theme live in a GitHub repo named "emacs"
-  ;; (nordtheme/emacs and dracula/emacs), so straight.el would try to clone
-  ;; both into straight/repos/emacs and silently reuse whichever landed first.
-  ;; Pin distinct :local-repo names to keep them apart.
-  ;; nord-theme ships without a lexical-binding cookie; hide that one warning.
-  (add-to-list 'warning-suppress-log-types
-	       '(files missing-lexbind-cookie
-		       "~/.emacs.d/straight/build/nord-theme/nord-theme.el"))
-  (use-package nord-theme
-    :straight (nord-theme :host github :repo "nordtheme/emacs"
-			  :local-repo "nord-emacs"))
   (use-package dracula-theme
     :straight (dracula-theme :host github :repo "dracula/emacs"
-			     :local-repo "dracula-emacs"))
+  			     :local-repo "dracula-emacs"))
 
   ;; Solarized theme that works in terminal
   (use-package solarized-theme
@@ -56,10 +45,10 @@
     :config
     ;; Update background mode when new frames are created
     (add-hook 'after-make-frame-functions
-	      (lambda (frame)
-		(solarized-update-background-mode
-		 (if (display-graphic-p frame) 'dark 'light)
-		 (list frame)))))
+  	      (lambda (frame)
+  		(solarized-update-background-mode
+  		 (if (display-graphic-p frame) 'dark 'light)
+  		 (list frame)))))
 
   (when (string= (system-name) "VME-PRD-HNL01N.vtcri.local")
      (load-theme 'jetbrains-darcula t)
@@ -164,6 +153,27 @@ Do not truncate lines in any buffer by default
   (setq recentf-max-menu-items 500)
   (setq recentf-max-saved-items 500)
   (global-set-key "\C-x\ \C-r" 'recentf-open-files)
+#+end_src
+
+** vterm
+Needs ~cmake~ and ~libtool~ to compile its module on first use.
+#+begin_src emacs-lisp
+  (use-package vterm
+    :ensure t
+    :defer t
+    :commands (vterm vterm-other-window)
+    :hook (vterm-mode . (lambda () (hl-line-mode -1))))
+#+end_src
+
+*** meow-vterm
+Meow normal mode works in vterm; insert mode passes keys to the terminal
+(only ~C-c~ is kept; ~C-c ESC~ sends ESC to the shell).
+#+begin_src emacs-lisp
+  (use-package meow-vterm
+    :straight (meow-vterm :host github :repo "accelbread/meow-vterm")
+    :after (meow vterm)
+    :config
+    (meow-vterm-enable))
 #+end_src
 
 ** clipetty
