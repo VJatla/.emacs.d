@@ -81,26 +81,31 @@
   (when (and (string= (system-name) "yatna") (string= (user-login-name) "vj"))
     (load-theme 'zenburn t))
 
-
+  (when (and (string= (system-name) "VT000512003") (string= (user-login-name) "vjatla@vtcri.local"))
+    (load-theme 'sanityinc-tomorrow-eighties t))
 
 
 #+end_src
 
 ** Font
 #+begin_src emacs-lisp
-  (add-to-list 'default-frame-alist
-		 '(font . "JetBrains Mono-14"))
+    (add-to-list 'default-frame-alist
+  		 '(font . "JetBrains Mono-14"))
 
-  (when (and (string= (system-name) "swechha") (string= (user-login-name) "vjatla"))
-  (add-to-list 'default-frame-alist
-	       '(font . "JetBrainsMono Nerd Font-12")))
+    (when (and (string= (system-name) "swechha") (string= (user-login-name) "vjatla"))
+    (add-to-list 'default-frame-alist
+  	       '(font . "JetBrainsMono Nerd Font-12")))
 
-  (when (string= (system-name) "fedora")
+  (when (and (string= (system-name) "VT000512003") (string= (user-login-name) "vjatla@vtcri.local"))
   (add-to-list 'default-frame-alist
-	       '(font . "JetBrains Mono-12")))
-(when (string= (system-name) "VT000504741")
-  (add-to-list 'default-frame-alist
-	       '(font . "JetBrains Mono-12")))
+  	       '(font . "JetBrainsMono Nerd Font-10")))
+
+    (when (string= (system-name) "fedora")
+    (add-to-list 'default-frame-alist
+  	       '(font . "JetBrains Mono-12")))
+  (when (string= (system-name) "VT000504741")
+    (add-to-list 'default-frame-alist
+  	       '(font . "JetBrains Mono-12")))
 
 #+end_src
 
