@@ -2,7 +2,6 @@
 *
 
 # Do not ignore the following files alone
-!auto-customization.el
 !/manually_installed/*
 !.gitignore
 !README.md
