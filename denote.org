@@ -15,6 +15,9 @@
   (when (and (string= (system-name) "VT000504741") (string= (user-login-name) "vjatla"))
     (setq denote-directory (expand-file-name "~/Dropbox/FBRI/notes/"))
     (setq denote-file-type 'markdown-yaml))
+  (when (and (string= (system-name) "VT000512003") (string= (user-login-name) "vjatla@vtcri.local"))
+    (setq denote-directory (expand-file-name "~/Dropbox/FBRI/notes/"))
+    (setq denote-file-type 'markdown-yaml))
 
 
   (setq denote-infer-keywords t)
